@@ -16,7 +16,11 @@ const equipo = [
     base: 'Laboratorios Dynamis',
     estado: 'OPERATIVA',
     habilidades: ['HTML5', 'CSS3 Avanzado', 'JavaScript ES6', 'Figma'],
+    // Imágenes 
     foto: 'img/avatar-ximena.jpg',
+    fotoHover: 'img/avatar-ximena-alt.jpg',
+    fotoBg: 'img/gato1.webp',
+    fotoBgHover: 'img/perro1.jpg',
     peliculas: ['Iron Man', 'Spider-Verse', 'Matrix'],
     discos: ['Random Access Memories', 'The Dark Side of the Moon', 'Discovery'],
   },
@@ -30,6 +34,9 @@ const equipo = [
     estado: 'EN LÍNEA',
     habilidades: ['CSS', 'Figma', 'Git', 'Node.js'],
     foto: 'img/avatar-franco.jpg',
+    fotoHover: 'img/avatar-franco-alt.jpg',
+    fotoBg: 'img/gato2.webp',
+    fotoBgHover: 'img/perro2.jpg',
     peliculas: ['The Dark Knight', 'Inception', 'Logan'],
     discos: ['Abbey Road', 'Ok Computer', 'Thriller'],
   },
@@ -43,6 +50,9 @@ const equipo = [
     estado: 'CONECTADO',
     habilidades: ['JS', 'Node', 'SQL', 'Python'],
     foto: 'img/avatar-rodrigo.jpg',
+    fotoHover: 'img/avatar-rodrigo-alt.jpg',
+    fotoBg: 'img/gato3.jpeg',
+    fotoBgHover: 'img/perro3.webp',
     peliculas: ['Doctor Strange', 'Interstellar', 'Dune'],
     discos: ['A Night at the Opera', 'Rumours', 'Back in Black'],
   },
@@ -56,6 +66,9 @@ const equipo = [
     estado: 'ACTIVA',
     habilidades: ['Python', 'APIs', 'Git', 'UI/UX'],
     foto: 'img/avatar-mara.jpg',
+    fotoHover: 'img/avatar-mara-alt.jpg',
+    fotoBg: 'img/gato4.webp',
+    fotoBgHover: 'img/perro4.webp',
     peliculas: ['Scott Pilgrim', 'Akira', 'Guardianes de la Galaxia'],
     discos: ['Demon Days', 'Currents', 'AM'],
   },
@@ -63,21 +76,12 @@ const equipo = [
 
 // Estado global de la app
 const state = {
-  expandedCard: null,   // id del card expandido (o null)
-  secretOpen: {},       // { [id]: bool }
+  expandedCard: null,
+  secretOpen: {},
 };
 
 
-// ── CURSOR PERSONALIZADO ──
-const cur  = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
 
-document.addEventListener('mousemove', e => {
-  cur.style.left  = e.clientX + 'px';
-  cur.style.top   = e.clientY + 'px';
-  ring.style.left = e.clientX + 'px';
-  ring.style.top  = e.clientY + 'px';
-});
 
 document.addEventListener('mouseover', e => {
   const interactive = e.target.closest('a, button, .crew-card');
@@ -88,31 +92,12 @@ document.addEventListener('mouseover', e => {
   } else {
     ring.style.width  = '34px';
     ring.style.height = '34px';
-    ring.style.opacity = '.55';
+    ring.style.opacity = '.45';
   }
 });
 
 
-// ── EFECTO SFX ──
-const sfxWords = ['ZAAAP!', 'PING!', 'ACCESS!', 'SCAN!', 'CLICK!', 'SYNC!'];
 
-function triggerSFX(e, word) {
-  const el = document.createElement('div');
-  el.className = 'space-sfx';
-  el.textContent = word || sfxWords[Math.floor(Math.random() * sfxWords.length)];
-  el.style.left = `${e.clientX}px`;
-  el.style.top  = `${e.clientY}px`;
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 520);
-}
-
-
-// ── SCAN OVERLAY ──
-function triggerScan() {
-  const overlay = document.getElementById('scan-overlay');
-  overlay.classList.add('active');
-  setTimeout(() => overlay.classList.remove('active'), 1500);
-}
 
 
 // ── TYPEWRITER ──
@@ -126,7 +111,7 @@ function startTypewriter(elementId, phrases) {
   let pIdx = 0, cIdx = 0, deleting = false;
 
   function type() {
-    if (!document.getElementById(elementId)) return; // el fue reemplazado
+    if (!document.getElementById(elementId)) return;
     const phrase = phrases[pIdx];
     if (!deleting) {
       el.textContent = phrase.slice(0, ++cIdx);
@@ -160,6 +145,9 @@ function animateCounters() {
 
 
 // ── COMPONENTE: TARJETA DE TRIPULANTE ──
+// Cada tarjeta es una imagen de fondo con texto overlay.
+// Al hacer hover la imagen cambia (usando fotoBg / fotoBgHover).
+// Al hacer click se expande para ver más info.
 function CrewCard(miembro, delay) {
   const isExpanded = state.expandedCard === miembro.id;
   const secretOpen = !!state.secretOpen[miembro.id];
@@ -181,10 +169,10 @@ function CrewCard(miembro, delay) {
       </div>
       <div class="detail-row">
         <span class="detail-key">ESTADO:</span>
-        <span class="detail-value" style="color: var(--green)">${miembro.estado}</span>
+        <span class="detail-value" style="color:#6dba6d">${miembro.estado}</span>
       </div>
 
-      <div class="detail-section-title">// HABILIDADES</div>
+      <div class="detail-section-title">Habilidades</div>
       <div class="card-skills" style="margin-bottom:0">${skillsHTML}</div>
 
       <button class="classified-btn"
@@ -195,11 +183,11 @@ function CrewCard(miembro, delay) {
       <div class="secret-files ${secretOpen ? 'open' : ''}">
         <div class="secret-grid">
           <div>
-            <h4>// CINTAS</h4>
+            <h4>Cintas</h4>
             <ul>${peliculasHTML}</ul>
           </div>
           <div>
-            <h4>// DISCOS</h4>
+            <h4>Discos</h4>
             <ul>${discosHTML}</ul>
           </div>
         </div>
@@ -207,35 +195,99 @@ function CrewCard(miembro, delay) {
     </div>
   `;
 
+  // Tarjeta EXPANDIDA: layout horizontal (imagen landscape | info)
+  if (isExpanded) {
+    return `
+      <div class="crew-card smash-in expanded"
+           id="card-${miembro.id}"
+           onclick="handleCardClick(event, '${miembro.id}')">
+
+        <div class="card-img"
+             style="background-image: url('${miembro.fotoBg}')">
+        </div>
+
+        <div class="card-right">
+          <div class="card-bottom">
+            <div class="card-id-tag">ID // ${miembro.crewId}</div>
+            <div class="card-name">${miembro.nombre}</div>
+            <div class="card-role">${miembro.rol}</div>
+            <div class="card-detail-hover">
+              <div class="card-skills">${skillsHTML}</div>
+            </div>
+            <button class="reveal-btn">▲ CERRAR EXPEDIENTE</button>
+          </div>
+
+          <div class="card-details open">
+            <div class="detail-row">
+              <span class="detail-key">BASE:</span>
+              <span class="detail-value">${miembro.base}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">ESTADO:</span>
+              <span class="detail-value" style="color:#6dba6d">${miembro.estado}</span>
+            </div>
+            <div class="detail-section-title">Habilidades</div>
+            <div class="card-skills" style="margin-bottom:0">${skillsHTML}</div>
+            <button class="classified-btn"
+              onclick="handleClassified(event, '${miembro.id}')">
+              ${secretOpen ? '▲ OCULTAR ARCHIVOS' : '▶ ARCHIVOS CLASIFICADOS'}
+            </button>
+            <div class="secret-files ${secretOpen ? 'open' : ''}">
+              <div class="secret-grid">
+                <div><h4>Cintas</h4><ul>${peliculasHTML}</ul></div>
+                <div><h4>Discos</h4><ul>${discosHTML}</ul></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Tarjeta normal: imagen vertical con texto overlay
   return `
     <div class="crew-card smash-in ${isExpanded ? 'expanded' : ''}"
          id="card-${miembro.id}"
          style="animation-delay: ${delay}s"
-         onclick="handleCardClick(event, '${miembro.id}')">
+         onclick="handleCardClick(event, '${miembro.id}')"
+         onmouseenter="swapCardImg(this, '${miembro.fotoBgHover}')"
+         onmouseleave="swapCardImg(this, '${miembro.fotoBg}')">
 
-      <div class="card-id">ID // ${miembro.crewId}</div>
-
-      <div class="card-avatar">
-        <img src="${miembro.foto}"
-             alt="${miembro.nombre}"
-             onerror="this.style.display='none'; this.parentElement.textContent='${miembro.initials}'">
+      <!-- Imagen de fondo -->
+      <div class="card-img"
+           data-src-normal="${miembro.fotoBg}"
+           data-src-hover="${miembro.fotoBgHover}"
+           style="background-image: url('${miembro.fotoBg}')">
       </div>
 
-      <div class="card-name">${miembro.nombre}</div>
-      <div class="card-role">${miembro.rol}</div>
+      <!-- Overlays -->
+      <div class="card-overlay-base"></div>
+      <div class="card-overlay-hover"></div>
 
-      <div class="card-skills">${skillsHTML}</div>
+      <!-- Contenido fijo abajo -->
+      <div class="card-bottom">
+        <div class="card-id-tag">ID // ${miembro.crewId}</div>
 
-      <button class="reveal-btn">
-        ${isExpanded ? '▲ CERRAR EXPEDIENTE' : '▼ REVELAR EXPEDIENTE'}
-      </button>
+        <div class="card-detail-hover">
+          <div class="card-skills">${skillsHTML}</div>
+        </div>
 
-      ${detailsHTML}
+        <div class="card-name">${miembro.nombre}</div>
+        <div class="card-role">${miembro.rol}</div>
 
-      <div class="card-arrow">↗</div>
+        <button class="reveal-btn">▼ REVELAR EXPEDIENTE</button>
+      </div>
     </div>
   `;
 }
+
+// Swap de imagen al hover (más suave que CSS background-image transition)
+window.swapCardImg = function(card, src) {
+  const imgDiv = card.querySelector('.card-img');
+  if (imgDiv) {
+    imgDiv.style.backgroundImage = `url('${src}')`;
+  }
+};
 
 
 // ── COMPONENTE: PÁGINA HOME ──
@@ -245,94 +297,109 @@ function Home() {
     .join('');
 
   return `
+    <!-- HERO CON IMAGEN DE FONDO -->
     <section class="hero-section">
-      <div class="hero-badge">IFTS N°29 // TP1 // 2026</div>
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
 
-      <h1 class="hero-title">
-        DYNAMIS <span class="title-accent">CREW</span>
-      </h1>
-      <p class="hero-subtitle">EQUIPO DE DESARROLLO WEB — MISIÓN EN CURSO</p>
+      <div class="hero-content">
+        <div class="hero-badge">IFTS N°29 // TP1 // 2026</div>
 
-      <div class="typewriter-wrap">
-        <span id="typewriter"></span>
+        <h1 class="hero-title">
+          DYNAMIS <span class="title-accent">CREW</span>
+        </h1>
+        <p class="hero-subtitle">EQUIPO DE DESARROLLO WEB — MISIÓN EN CURSO</p>
+
+        <div class="typewriter-wrap">
+          <span id="typewriter"></span>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number" data-target="4">0</span>
+            <span class="stat-label">Tripulantes</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" data-target="10">0</span>
+            <span class="stat-label">Tecnologías</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" data-target="1">0</span>
+            <span class="stat-label">Misión</span>
+          </div>
+        </div>
+
+        <div class="hero-divider"></div>
+
+        
       </div>
 
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-number" data-target="4">0</span>
-          <span class="stat-label">Tripulantes</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number" data-target="10">0</span>
-          <span class="stat-label">Tecnologías</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number" data-target="1">0</span>
-          <span class="stat-label">Misión</span>
-        </div>
+      <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="hero-scroll-line"></div>
       </div>
-
-      <button class="btn-scan" onclick="handleScan(event)">
-        ▶ INICIAR ESCANEO
-      </button>
     </section>
 
+    <!-- TRIPULANTES -->
     <section class="crew-section">
-      <div class="section-header">
-        <h2>// TRIPULANTES</h2>
-        <div class="header-line"></div>
-        <span class="header-count">${equipo.length} AGENTES REGISTRADOS</span>
+      <div class="inner-container">
+        <div class="section-header">
+          <h2>Tripulantes</h2>
+          <div class="header-line"></div>
+          <span class="header-count">${equipo.length} AGENTES REGISTRADOS</span>
+        </div>
       </div>
       <div class="crew-grid" id="crew-grid">
         ${cardsHTML}
       </div>
     </section>
 
+    <!-- MISIÓN -->
     <section class="mission-section">
-      <div class="section-header">
-        <h2>// MISIÓN</h2>
-        <div class="header-line"></div>
-      </div>
-      <div class="mission-grid">
-        <div class="mission-text">
-          <p>Somos <span>DYNAMIS CREW</span>, un equipo de estudiantes del IFTS N°29 unidos para desarrollar este proyecto web como parte del <span>Trabajo Práctico 1</span>.</p>
-          <p>Nuestra misión: construir un sitio cohesionado donde cada integrante presente sus habilidades y deje registro en la <span>bitácora de desarrollo</span>.</p>
-          <p>Stack tecnológico: <span>HTML5</span> · <span>CSS3</span> · <span>JavaScript</span> puro — desplegado en <span>Vercel</span>.</p>
+      <div class="inner-container">
+        <div class="section-header">
+          <h2>Misión</h2>
+          <div class="header-line"></div>
         </div>
-        <div class="terminal-box">
-          <div class="term-titlebar">
-            <div class="term-dot" style="background:#ff5f57"></div>
-            <div class="term-dot" style="background:#ffbd2e"></div>
-            <div class="term-dot" style="background:#28c940"></div>
-            <span class="term-title-text">dynamis ~ status</span>
+        <div class="mission-grid">
+          <div class="mission-text">
+            <p>Somos <span>DYNAMIS CREW</span>, un equipo de estudiantes del IFTS N°29 unidos para desarrollar este proyecto web como parte del <span>Trabajo Práctico 1</span>.</p>
+            <p>Nuestra misión: construir un sitio cohesionado donde cada integrante presente sus habilidades y deje registro en la <span>bitácora de desarrollo</span>.</p>
+            <p>Stack tecnológico: <span>HTML5</span> · <span>CSS3</span> · <span>JavaScript</span> puro — desplegado en <span>Vercel</span>.</p>
           </div>
-          <div class="term-body">
-            <div><span class="t-prompt">$</span><span class="t-cmd"> crew --status</span></div>
-            <div class="t-out">▸ EQUIPO: DYNAMIS CREW</div>
-            <div class="t-out">▸ INTEGRANTES: 4</div>
-            <div class="t-out">▸ ESTADO: EN DESARROLLO</div>
-            <div><span class="t-prompt">$</span><span class="t-cmd"> deploy --target vercel</span></div>
-            <div class="t-ok">▸ BUILD: OK</div>
-            <div class="t-ok">▸ DEPLOY: EXITOSO ✓</div>
-            <div><span class="t-prompt">$</span> <span class="t-cursor">▋</span></div>
+          <div class="terminal-box">
+            <div class="term-titlebar">
+              <div class="term-dot" style="background:#ff5f57"></div>
+              <div class="term-dot" style="background:#ffbd2e"></div>
+              <div class="term-dot" style="background:#28c940"></div>
+              <span class="term-title-text">dynamis ~ status</span>
+            </div>
+            <div class="term-body">
+              <div><span class="t-prompt">$</span><span class="t-cmd"> crew --status</span></div>
+              <div class="t-out">▸ EQUIPO: DYNAMIS CREW</div>
+              <div class="t-out">▸ INTEGRANTES: 4</div>
+              <div class="t-out">▸ ESTADO: EN DESARROLLO</div>
+              <div><span class="t-prompt">$</span><span class="t-cmd"> deploy --target vercel</span></div>
+              <div class="t-ok">▸ BUILD: OK</div>
+              <div class="t-ok">▸ DEPLOY: EXITOSO ✓</div>
+              <div><span class="t-prompt">$</span> <span class="t-cursor">▋</span></div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- BITÁCORA PREVIEW -->
     <section class="bitacora-section">
-      <div class="section-header">
-        <h2>// BITÁCORA</h2>
-        <div class="header-line"></div>
-      </div>
-      <div class="bitacora-preview">
-        <h2 style="font-family:'Orbitron',sans-serif; font-size:.82rem; letter-spacing:6px; color:var(--cyan)">
-          // REGISTRO DE MISIÓN
-        </h2>
-        <p>Cada decisión, dificultad y cambio queda documentado en nuestra bitácora de misión. Transparencia total del proceso.</p>
-        <a class="btn-outline" href="#" onclick="navigate('bitacora'); return false;">
-          VER BITÁCORA →
-        </a>
+      <div class="bitacora-bg"></div>
+      <div class="inner-container">
+        <div class="bitacora-preview">
+          <h3>Bitácora de Misión</h3>
+          <p>Cada decisión, dificultad y cambio queda documentado en nuestra bitácora de misión. Transparencia total del proceso.</p>
+          <a class="btn-outline" href="#" onclick="navigate('bitacora'); return false;">
+            VER BITÁCORA →
+          </a>
+        </div>
       </div>
     </section>
   `;
@@ -366,34 +433,31 @@ const logs = [
 function Bitacora() {
   const entriesHTML = logs.map((log, i) => `
     <div class="log-entry smash-in" style="animation-delay: ${i * 0.1}s">
-      <div class="log-date">// ${log.fecha}</div>
-      <div class="log-title">${log.titulo}</div>
-      <p class="log-body">${log.cuerpo}</p>
+      <div class="log-date">${log.fecha}</div>
+      <div>
+        <div class="log-title">${log.titulo}</div>
+        <p class="log-body">${log.cuerpo}</p>
+      </div>
     </div>
   `).join('');
 
   return `
-    <section class="bitacora-page">
+    <div class="bitacora-page">
       <div class="section-header">
-        <h2>// BITÁCORA DE MISIÓN</h2>
+        <h2>Bitácora de Misión</h2>
         <div class="header-line"></div>
         <span class="header-count">${logs.length} ENTRADAS</span>
       </div>
       ${entriesHTML}
-    </section>
+    </div>
   `;
 }
 
 
 // ── MANEJADORES DE EVENTOS ──
 
-// Card: expandir / contraer
 window.handleCardClick = function(e, id) {
-  // Si el click viene del botón classified, no hacer nada acá
-  if (e.target.closest('.classified-btn')) return;
-
-  triggerSFX(e, 'ZAAAP!');
-
+ 
   if (state.expandedCard === id) {
     state.expandedCard = null;
     state.secretOpen[id] = false;
@@ -401,10 +465,8 @@ window.handleCardClick = function(e, id) {
     state.expandedCard = id;
   }
 
-  // Re-render solo el grid
   renderCrewGrid();
 
-  // Scroll suave al card expandido
   if (state.expandedCard) {
     setTimeout(() => {
       const card = document.getElementById(`card-${id}`);
@@ -413,7 +475,6 @@ window.handleCardClick = function(e, id) {
   }
 };
 
-// Archivos clasificados
 window.handleClassified = function(e, id) {
   e.stopPropagation();
   triggerSFX(e, 'CLICK!');
@@ -421,27 +482,11 @@ window.handleClassified = function(e, id) {
   renderCrewGrid();
 };
 
-// Botón escaneo
-window.handleScan = function(e) {
-  triggerSFX(e, 'SCAN!');
-  triggerScan();
-};
 
-// Re-render solo el grid (sin destruir el resto)
 function renderCrewGrid() {
   const grid = document.getElementById('crew-grid');
   if (!grid) return;
   grid.innerHTML = equipo.map((m, i) => CrewCard(m, 0)).join('');
-  // actualizar textos de botones reveal
-  equipo.forEach(m => {
-    const card = document.getElementById(`card-${m.id}`);
-    if (card) {
-      const btn = card.querySelector('.reveal-btn');
-      if (btn) btn.textContent = state.expandedCard === m.id
-        ? '▲ CERRAR EXPEDIENTE'
-        : '▼ REVELAR EXPEDIENTE';
-    }
-  });
 }
 
 
@@ -449,10 +494,8 @@ function renderCrewGrid() {
 window.navigate = function(page) {
   const root = document.getElementById('root');
 
-  // Limpiar typewriter anterior
   if (twInterval) clearTimeout(twInterval);
 
-  // Marcar nav activo
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.classList.toggle('active',
       (page === 'home'     && btn.textContent === 'INICIO') ||
@@ -462,13 +505,11 @@ window.navigate = function(page) {
 
   if (page === 'home') {
     root.innerHTML = Home();
-    // Iniciar typewriter
     startTypewriter('typewriter', [
       'Construyendo el futuro, una línea a la vez.',
       'HTML · CSS · JavaScript · Vercel.',
       'Trabajo Práctico 1 — Proyecto Web en Equipo.',
     ]);
-    // Contadores al hacer scroll
     const statsEl = document.querySelector('.hero-stats');
     if (statsEl) {
       const obs = new IntersectionObserver(entries => {
