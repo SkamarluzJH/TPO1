@@ -1,0 +1,813 @@
+/* ============================================
+   DYNAMIS — Sistema Nexus (Tema Espacial)
+   Arquitectura SPA Vanilla JS
+   css/styles.css
+   ============================================ */
+
+/* ── 1. VARIABLES ── */
+:root {
+  --bg:         #050810;
+  --bg2:        #090d1a;
+  --bg3:        #0d1225;
+  --cyan:       #00f5ff;
+  --cyan-dim:   rgba(0,245,255,0.12);
+  --cyan-glow:  rgba(0,245,255,0.45);
+  --cyan-border:rgba(0,245,255,0.25);
+  --green:      #39ff14;
+  --red:        #ff2d55;
+  --yellow:     #ffd700;
+  --text:       #c8ddf0;
+  --text-dim:   #4a6a80;
+  --text-muted: #2a4a60;
+}
+
+/* ── 2. RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Scanlines globales */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 3px,
+    rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ── 3. CURSOR PERSONALIZADO ── */
+#cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan), 0 0 22px var(--cyan-glow);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform .08s;
+}
+
+#cursor-ring {
+  position: fixed;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--cyan);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform .18s ease, width .2s, height .2s, opacity .2s;
+  opacity: .55;
+}
+
+/* ── 4. SCAN OVERLAY ── */
+#scan-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 600;
+  pointer-events: none;
+}
+#scan-overlay.active { display: block; }
+#scan-line {
+  position: absolute; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  box-shadow: 0 0 14px var(--cyan);
+  animation: scanMove 1.4s ease-in-out forwards;
+}
+#scan-msg {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: var(--cyan);
+  text-shadow: 0 0 14px var(--cyan-glow);
+  letter-spacing: 6px;
+  animation: fadeMsg 1.4s ease forwards;
+}
+@keyframes scanMove {
+  0%   { top: 0; opacity: 1; }
+  100% { top: 100%; opacity: .2; }
+}
+@keyframes fadeMsg {
+  0%   { opacity: 0; transform: translate(-50%,-50%) scale(.9); }
+  25%  { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ── 5. NAVBAR ── */
+.nav-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  background: rgba(5,8,16,.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--cyan-border);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 36px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nav-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--cyan);
+  text-shadow: 0 0 12px var(--cyan-glow);
+  letter-spacing: 5px;
+}
+
+.logo-bracket { color: var(--text-dim); }
+
+.nav-links { display: flex; gap: 8px; }
+
+.nav-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 7px 18px;
+  border-radius: 2px;
+  cursor: none;
+  transition: color .2s, border-color .2s, text-shadow .2s;
+}
+
+.nav-btn:hover {
+  color: var(--cyan);
+  border-color: var(--cyan-border);
+  text-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.nav-btn.active {
+  color: var(--cyan);
+  border-color: var(--cyan-border);
+  background: var(--cyan-dim);
+}
+
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .68rem;
+  color: var(--green);
+  letter-spacing: 2px;
+}
+
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+
+/* ── 6. ROOT / LAYOUT ── */
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 36px 60px;
+  min-height: 100vh;
+}
+
+/* ── 7. ANIMACIONES GLOBALES ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+@keyframes glowPulse {
+  0%,100% { text-shadow: 0 0 10px var(--cyan-glow); }
+  50%     { text-shadow: 0 0 28px var(--cyan-glow), 0 0 50px var(--cyan-dim); }
+}
+
+@keyframes smashIn {
+  0%   { opacity: 0; transform: scale(1.06) translateY(-16px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.smash-in { animation: smashIn .45s cubic-bezier(.25,.46,.45,.94) both; }
+
+/* SFX flotante */
+.space-sfx {
+  position: fixed;
+  pointer-events: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--cyan);
+  text-shadow: 0 0 16px var(--cyan-glow), 0 0 32px var(--cyan-dim);
+  z-index: 9999;
+  letter-spacing: 2px;
+  animation: sfxPop .5s cubic-bezier(.175,.885,.32,1.275) forwards;
+}
+@keyframes sfxPop {
+  0%   { transform: translate(-50%,-50%) scale(0) rotate(-15deg); opacity:0; }
+  55%  { transform: translate(-50%,-50%) scale(1.15) rotate(6deg);  opacity:1; }
+  100% { transform: translate(-50%,-50%) scale(.9)  rotate(2deg);  opacity:0; }
+}
+
+/* ── 8. SECCIÓN HERO ── */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 0 60px;
+}
+
+.hero-badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: 5px;
+  color: var(--cyan);
+  border: 1px solid var(--cyan-border);
+  padding: 6px 22px;
+  border-radius: 2px;
+  margin-bottom: 28px;
+  animation: fadeUp .6s ease .1s both;
+}
+
+
+.hero-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  color: #fff;
+  letter-spacing: 6px;
+  line-height: 1;
+  animation: fadeUp .6s ease .25s both;
+}
+
+.hero-title .title-accent {
+  color: var(--cyan);
+  animation: glowPulse 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+.hero-subtitle {
+  margin-top: 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(.8rem, 2vw, 1rem);
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  animation: fadeUp .6s ease .4s both;
+}
+
+.typewriter-wrap {
+  margin-top: 32px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .95rem;
+  color: var(--cyan);
+  min-height: 1.6em;
+  animation: fadeUp .6s ease .55s both;
+}
+
+#typewriter::after {
+  content: '▋';
+  animation: blink .7s step-end infinite;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 56px;
+  margin-top: 52px;
+  animation: fadeUp .6s ease .7s both;
+}
+
+.stat { text-align: center; }
+
+.stat-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--cyan);
+  text-shadow: 0 0 16px var(--cyan-glow);
+  display: block;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .65rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 6px;
+  display: block;
+}
+
+.btn-scan {
+  margin-top: 48px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--cyan);
+  border: none;
+  padding: 14px 44px;
+  cursor: none;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: box-shadow .2s, transform .15s;
+  animation: fadeUp .6s ease .85s both;
+}
+.btn-scan:hover {
+  box-shadow: 0 0 22px var(--cyan-glow), 0 0 44px var(--cyan-dim);
+  transform: translateY(-2px);
+}
+
+/* ── 9. SECTION HEADER ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 48px;
+}
+
+.section-header h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: var(--cyan);
+  white-space: nowrap;
+}
+
+.header-line {
+  flex: 1;
+  height: 1px;
+  background: var(--cyan-border);
+}
+
+.header-count {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .65rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+/* ── 10. CREW GRID / TARJETAS ── */
+.crew-section { margin-top: 72px; }
+
+.crew-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.crew-card {
+  background: var(--bg2);
+  border: 1px solid var(--cyan-border);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+}
+
+/* Línea superior animada en hover */
+.crew-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  transform: scaleX(0);
+  transition: transform .3s ease;
+}
+.crew-card:hover::before,
+.crew-card.expanded::before { transform: scaleX(1); }
+
+.crew-card:hover:not(.expanded) {
+  border-color: var(--cyan);
+  box-shadow: 0 0 24px rgba(0,245,255,.1), inset 0 0 28px rgba(0,245,255,.03);
+  transform: translateY(-5px);
+}
+
+.crew-card.expanded {
+  border-color: var(--cyan);
+  box-shadow: 0 0 30px rgba(0,245,255,.14);
+  grid-column: span 2;
+}
+
+/* ID y avatar */
+.card-id {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .62rem;
+  color: var(--text-muted);
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+}
+
+.card-avatar {
+  width: 68px; height: 68px;
+  border-radius: 50%;
+  background: var(--cyan-dim);
+  border: 2px solid var(--cyan);
+  box-shadow: 0 0 14px var(--cyan-glow);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--cyan);
+  overflow: hidden;
+}
+
+.card-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.card-role {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .68rem;
+  color: var(--cyan);
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+
+/* Skills preview */
+.card-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.skill-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .6rem;
+  color: var(--text-dim);
+  border: 1px solid var(--cyan-border);
+  padding: 3px 10px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  transition: border-color .2s, color .2s;
+}
+.crew-card:hover .skill-tag,
+.crew-card.expanded .skill-tag {
+  border-color: rgba(0,245,255,.4);
+  color: var(--text);
+}
+
+/* Botón revelar */
+.reveal-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: transparent;
+  border: 1px solid var(--cyan-border);
+  padding: 7px 16px;
+  cursor: none;
+  width: 100%;
+  text-align: left;
+  transition: background .2s, border-color .2s;
+}
+.reveal-btn:hover {
+  background: var(--cyan-dim);
+  border-color: var(--cyan);
+}
+
+/* Detalle expandido */
+.card-details {
+  display: none;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--cyan-border);
+}
+
+.card-details.open { display: block; }
+
+.detail-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .72rem;
+}
+.detail-key   { color: var(--text-muted); min-width: 80px; }
+.detail-value { color: var(--text); }
+
+.detail-section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .65rem;
+  letter-spacing: 4px;
+  color: var(--cyan);
+  margin: 18px 0 10px;
+}
+
+/* Archivos clasificados */
+.classified-btn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--cyan);
+  border: none;
+  padding: 10px 20px;
+  cursor: none;
+  width: 100%;
+  margin-top: 16px;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  transition: box-shadow .2s;
+}
+.classified-btn:hover {
+  box-shadow: 0 0 18px var(--cyan-glow);
+}
+
+.secret-files {
+  display: none;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--cyan-border);
+}
+.secret-files.open { display: block; }
+
+.secret-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.secret-grid h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .6rem;
+  letter-spacing: 3px;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+
+.secret-grid ul {
+  padding-left: 0;
+  list-style: none;
+}
+.secret-grid li {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .7rem;
+  color: var(--text-dim);
+  padding: 3px 0;
+  letter-spacing: 1px;
+}
+.secret-grid li::before {
+  content: '▸ ';
+  color: var(--cyan);
+}
+
+/* Flecha */
+.card-arrow {
+  position: absolute;
+  bottom: 20px; right: 20px;
+  font-size: 1rem;
+  color: var(--text-muted);
+  transition: color .2s, transform .2s;
+  pointer-events: none;
+}
+.crew-card:hover .card-arrow {
+  color: var(--cyan);
+  transform: translate(3px, -3px);
+}
+
+/* ── 11. MISIÓN / ABOUT ── */
+.mission-section { margin-top: 72px; }
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.mission-text p {
+  font-size: .95rem;
+  line-height: 1.9;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.mission-text p span {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--cyan);
+  font-size: 1em;
+}
+
+/* Terminal */
+.terminal-box {
+  background: #000;
+  border: 1px solid var(--cyan-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.term-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #0d0d0d;
+  border-bottom: 1px solid #1a1a1a;
+}
+.term-dot { width: 10px; height: 10px; border-radius: 50%; }
+.term-title-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .65rem;
+  color: var(--text-muted);
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 2px;
+}
+.term-body {
+  padding: 20px 22px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .78rem;
+  line-height: 2.1;
+}
+.t-prompt { color: var(--cyan); margin-right: 8px; }
+.t-cmd    { color: #e0e0e0; }
+.t-out    { color: var(--text-dim); padding-left: 14px; }
+.t-ok     { color: var(--green); padding-left: 14px; }
+.t-cursor {
+  color: var(--cyan);
+  animation: blink .8s step-end infinite;
+}
+
+/* ── 12. BITÁCORA ── */
+.bitacora-section { margin-top: 72px; }
+
+.bitacora-preview {
+  background: var(--bg2);
+  border: 1px solid var(--cyan-border);
+  padding: 48px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.bitacora-preview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,245,255,.04), transparent);
+  pointer-events: none;
+}
+.bitacora-preview p {
+  font-size: .95rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 560px;
+  margin: 18px auto 36px;
+}
+.btn-outline {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+  padding: 13px 38px;
+  text-decoration: none;
+  display: inline-block;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  cursor: none;
+  transition: background .2s, color .2s, box-shadow .2s;
+}
+.btn-outline:hover {
+  background: var(--cyan);
+  color: var(--bg);
+  box-shadow: 0 0 22px var(--cyan-glow);
+}
+
+/* ── 13. PÁGINA BITÁCORA ── */
+.bitacora-page {
+  padding-top: 20px;
+}
+
+.log-entry {
+  background: var(--bg2);
+  border: 1px solid var(--cyan-border);
+  border-left: 3px solid var(--cyan);
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  transition: border-color .2s;
+}
+.log-entry:hover { border-color: var(--cyan); }
+
+.log-date {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .65rem;
+  color: var(--cyan);
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+.log-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.log-body {
+  font-size: .88rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+/* ── 14. RESPONSIVE ── */
+@media (max-width: 900px) {
+  .nav-container { padding: 0 20px; }
+  #root { padding: 88px 20px 48px; }
+  .mission-grid { grid-template-columns: 1fr; }
+  .crew-card.expanded { grid-column: span 1; }
+  .secret-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .hero-stats { gap: 28px; }
+  .crew-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #00f5ff;
+  text-decoration: none;
+  font-family: 'Share Tech Mono', monospace;
+  transition: 0.3s;
+}
+
+/* SVG */
+.contact-item svg {
+  width: 22px;
+  fill: #00f5ff;
+  transition: 0.3s;
+}
+
+/* Hover */
+.contact-item:hover {
+  transform: translateX(6px);
+  text-shadow: 0 0 5px #00f5ff;
+}
+
+.contact-item:hover svg {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 5px #00f5ff);
+}
