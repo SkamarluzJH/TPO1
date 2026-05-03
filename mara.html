@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mara Skaarup | Dynamis Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <header class="nav-header">
+    <nav class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-bracket">[</span>DYNAMIS<span class="logo-bracket">]</span>
+      </div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="window.location.href='index.html'">INICIO</button>
+        <button class="nav-btn" onclick="window.location.href='index.html?page=bitacora'">BITÁCORA</button>
+        <button class="nav-btn active" onclick="window.location.href='index.html'">INTEGRANTES</button>
+      </div>
+      <div class="nav-status">
+        <div class="status-dot"></div>
+        <span>SISTEMA ACTIVO</span>
+      </div>
+    </nav>
+  </header>
+
+  <main id="root">
+
+    <div class="profile-nav-buttons">
+      <a href="rodrigo.html" class="profile-nav-btn">← ATRÁS</a>
+      <span class="profile-nav-btn placeholder">SIGUIENTE →</span>
+    </div>
+
+    <!-- HERO -->
+    <div class="profile-hero-layout">
+
+      <div class="profile-hero-left">
+        <div class="hero-badge" style="align-self:flex-start; margin-bottom:20px; animation: fadeUp .6s ease .1s both;">PORTFOLIO PERSONAL</div>
+
+        <h1 class="profile-hero-title">
+          MARA
+          <span class="title-accent">SKAARUP</span>
+        </h1>
+        <p class="profile-hero-subtitle">DESARROLLADORA EN FORMACIÓN</p>
+
+        <div class="profile-about-box">
+          <div class="profile-about-label">// SOBRE MÍ</div>
+          <div class="profile-about-text">
+            <p>
+              Soy estudiante de <span>programación</span> y <span>Ciencia de Datos</span>,
+              con un fuerte interés en el <span>desarrollo web</span> y en cómo la <span>tecnología</span>
+              puede transformar la forma en que interpretamos el mundo.
+            </p>
+            <p>
+              Realicé un curso de <span>UX/UI</span> y utilizo herramientas como
+              <span>Figma</span>, combinando estética y <span>usabilidad</span>.
+            </p>
+            <p>
+              Cuento con experiencia en <span>análisis de datos</span> con <span>Python</span>,
+              aplicando limpieza, <span>visualización</span> y generación de <span>insights</span>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOTO -->
+      <div class="profile-photo-col">
+        <div class="profile-photo-frame">
+          <img src="img/mara/foto.png"
+               alt="Mara Skaarup"
+               onerror="this.src='https://picsum.photos/seed/mara_portrait/400/530'">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- HABILIDADES -->
+    <section class="crew-section">
+      <div class="section-header">
+        <h2>// HABILIDADES</h2>
+        <div class="header-line"></div>
+      </div>
+      <div class="crew-grid">
+        <div class="crew-card">
+          <div class="card-name">TECNOLOGÍAS</div>
+          <div class="card-skills">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Diseño UX/UI</span>
+            <span class="skill-tag">Python</span>
+          </div>
+        </div>
+        <div class="crew-card">
+          <div class="card-name">EN APRENDIZAJE</div>
+          <div class="card-skills">
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOBBIES -->
+    <section class="crew-section">
+      <div class="section-header">
+        <h2>// HOBBIES</h2>
+        <div class="header-line"></div>
+      </div>
+
+      <!-- PROYECTOS -->
+      <div class="hobby-category">
+        <div class="hobby-category-title">🎶 PROYECTOS</div>
+        <div class="hobby-cards-row">
+          <div class="hobby-card">
+            <div class="hobby-card-title">— App para artesano—</div>
+            <div class="hobby-card-img">
+              <img src="img/mara/proyecto1.png" alt="App artesano">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">— App para gimnasio —</div>
+            <div class="hobby-card-img">
+              <img src="img/mara/Dynamis.png" alt="App gimnasio">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PELÍCULAS -->
+      <div class="hobby-category">
+        <div class="hobby-category-title">🎬 PELÍCULAS</div>
+        <div class="hobby-cards-row">
+          <div class="hobby-card">
+            <div class="hobby-card-title">J-Hope IN THE BOX</div>
+            <div class="hobby-card-img">
+              <img src="img/mara/j-hope.png" alt="J-Hope IN THE BOX">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Orgullo y Prejuicio</div>
+            <div class="hobby-card-img">
+              <img src="img/mara/orgulloyprejucio.png" alt="Orgullo y Prejuicio">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">BTS: El Regreso</div>
+            <div class="hobby-card-img">
+              <img src="img/mara/btsregreso.png" alt="BTS El Regreso">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="mission-section">
+      <div class="section-header">
+        <h2>// CONTACTO</h2>
+        <div class="header-line"></div>
+      </div>
+      <div class="contact-links">
+        <a href="https://github.com/SkamarluzJH" target="_blank" class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 008.2 11.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.6 2.2 3.5 1.6.1-.7.4-1.2.7-1.5-2.7-.3-5.6-1.3-5.6-6a4.7 4.7 0 011.2-3.2 4.3 4.3 0 01.1-3.1s1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.4 1 .2 2.1.1 3.1a4.7 4.7 0 011.2 3.2c0 4.7-2.9 5.7-5.6 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>github/SkamarluzJH</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const cur  = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    document.addEventListener('mousemove', e => {
+      cur.style.left  = e.clientX + 'px';
+      cur.style.top   = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px';
+      ring.style.top  = e.clientY + 'px';
+    });
+    document.addEventListener('mouseover', e => {
+      const interactive = e.target.closest('a, button, .crew-card, .hobby-card');
+      if (interactive) {
+        ring.style.width  = '54px';
+        ring.style.height = '54px';
+        ring.style.opacity = '.9';
+      } else {
+        ring.style.width  = '34px';
+        ring.style.height = '34px';
+        ring.style.opacity = '.55';
+      }
+    });
+  </script>
+</body>
+</html>

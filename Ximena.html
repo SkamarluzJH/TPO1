@@ -3,68 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ximena | Dynamis Profile</title>
-
-  <!-- Fuentes Dynamis -->
+  <title>Ximena Facal | Dynamis Profile</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet"/>
-
   <link rel="stylesheet" href="css/styles.css"/>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
   <header class="nav-header">
     <nav class="nav-container">
       <div class="nav-logo">
-        <span class="logo-bracket">[</span>XIMENA FACAL<span class="logo-bracket">]</span>
+        <span class="logo-bracket">[</span>DYNAMIS<span class="logo-bracket">]</span>
+      </div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="window.location.href='index.html'">INICIO</button>
+        <button class="nav-btn" onclick="window.location.href='index.html?page=bitacora'">BITÁCORA</button>
+        <button class="nav-btn active" onclick="window.location.href='index.html'">INTEGRANTES</button>
       </div>
       <div class="nav-status">
         <div class="status-dot"></div>
         <span>SISTEMA ACTIVO</span>
       </div>
-
     </nav>
   </header>
 
   <main id="root">
 
+    <div class="profile-nav-buttons">
+      <span class="profile-nav-btn placeholder">← ATRÁS</span>
+      <a href="franco.html" class="profile-nav-btn">SIGUIENTE →</a>
+    </div>
+
     <!-- HERO -->
-    <section class="hero-section">
-      <div class="hero-badge">PORTFOLIO PERSONAL</div>
+    <div class="profile-hero-layout">
 
-      <h1 class="hero-title">
-        XIMENA <span class="title-accent">FACAL</span>
-      </h1>
+      <div class="profile-hero-left">
+        <div class="hero-badge" style="align-self:flex-start; margin-bottom:20px; animation: fadeUp .6s ease .1s both;">PORTFOLIO PERSONAL</div>
 
-      <p class="hero-subtitle">
-        DESARROLLADORA EN FORMACIÓN — TECNOLOGÍA & DATOS
-      </p>
-    </section>
+        <h1 class="profile-hero-title">
+          XIMENA
+          <span class="title-accent">FACAL</span>
+        </h1>
+        <p class="profile-hero-subtitle">DESARROLLADORA EN FORMACIÓN — TECNOLOGÍA & DATOS</p>
 
-    <!-- SOBRE MI -->
-    <section class="mission-section">
-      <div class="section-header">
-        <h2>// SOBRE MÍ</h2>
-        <div class="header-line"></div>
+        <div class="profile-about-box">
+          <div class="profile-about-label">// SOBRE MÍ</div>
+          <div class="profile-about-text">
+            <p>
+              Tengo 31 años y soy de Buenos Aires. Me apasiona la
+              <span>tecnología</span> y comencé mis estudios con <span>Python</span>.
+            </p>
+            <p>
+              Actualmente estoy explorando <span>datos y cloud</span>.
+            </p>
+            <p>
+              Mi objetivo es crear <span>soluciones útiles y eficientes</span>.
+            </p>
+          </div>
+        </div>
       </div>
-      
 
-      <div class="mission-text">
-        <p>
-          Tengo 31 años y soy de Buenos Aires. Me apasiona la 
-          <span>tecnología</span> y comencé mis estudios con <span>Python</span>.
-        </p>
-
-        <p>
-          Actualmente estoy explorando <span>datos y cloud</span>.
-        </p>
-
-        <p>
-          Mi objetivo es crear <span>soluciones útiles y eficientes</span>.
-        </p>
+      <!-- FOTO -->
+      <div class="profile-photo-col">
+        <div class="profile-photo-frame">
+          <!-- Reemplazar src por foto propia -->
+          <img src="img/ximena/foto.png"
+               alt="Ximena Facal"
+               onerror="this.src='https://picsum.photos/seed/ximena_portrait/400/530'">
+        </div>
       </div>
-    </section>
+
+    </div>
 
     <!-- HABILIDADES -->
     <section class="crew-section">
@@ -72,9 +83,7 @@
         <h2>// HABILIDADES</h2>
         <div class="header-line"></div>
       </div>
-
       <div class="crew-grid">
-
         <div class="crew-card">
           <div class="card-name">TECNOLOGÍAS</div>
           <div class="card-skills">
@@ -84,7 +93,6 @@
             <span class="skill-tag">Python</span>
           </div>
         </div>
-
         <div class="crew-card">
           <div class="card-name">EN APRENDIZAJE</div>
           <div class="card-skills">
@@ -93,7 +101,6 @@
             <span class="skill-tag">Linux</span>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -104,29 +111,112 @@
         <div class="header-line"></div>
       </div>
 
-      <div class="crew-grid">
-
-        <div class="crew-card">
-          <div class="card-name">🎶 MÚSICA</div>
-          <div class="card-role">Linkin Park · Muse · Royal Blood · RHCP</div>
+      <!-- MÚSICA -->
+      <div class="hobby-category">
+        <div class="hobby-category-title">🎶 MÚSICA</div>
+        <div class="hobby-cards-row">
+          <div class="hobby-card">
+            <div class="hobby-card-title">Linkin Park</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/linkinpark.png" alt="Linkin Park">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Muse</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/muse.png" alt="Muse">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Royal Blood</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/royalblood.png" alt="Royal Blood">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">RHCP</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/rhcp.png" alt="RHCP">
+            </div>
+          </div>
         </div>
-
-        <div class="crew-card">
-          <div class="card-name">🎬 SERIES</div>
-          <div class="card-role">Friends · TBBT · Hill House</div>
-        </div>
-
-        <div class="crew-card">
-          <div class="card-name">📚 LIBROS</div>
-          <div class="card-role">Harry Potter · LOTR · Eragon</div>
-        </div>
-
-        <div class="crew-card">
-          <div class="card-name">🎮 GAMING</div>
-          <div class="card-role">Apex · Phasmophobia · Hogwarts Legacy</div>
-        </div>
-
       </div>
+
+      <!-- SERIES -->
+      <div class="hobby-category">
+        <div class="hobby-category-title">🎬 SERIES</div>
+        <div class="hobby-cards-row">
+          <div class="hobby-card">
+            <div class="hobby-card-title">Friends</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/friends.png" alt="Friends">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">TBBT</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/tbbt.png" alt="TBBT">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Hill House</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/hillhouse.png" alt="Hill House">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIBROS -->
+      <div class="hobby-category">
+        <div class="hobby-category-title">📚 LIBROS</div>
+        <div class="hobby-cards-row">
+          <div class="hobby-card">
+            <div class="hobby-card-title">Harry Potter</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/harrylibro.png" alt="Harry Potter">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">LOTR</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/lotr.png" alt="LOTR">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Eragon</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/eragon.png" alt="Eragon">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAMING -->
+      <div class="hobby-category">
+        <div class="hobby-category-title">🎮 GAMING</div>
+        <div class="hobby-cards-row">
+          <div class="hobby-card">
+            <div class="hobby-card-title">Apex Legends</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/apex.png" alt="Apex Legends">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Phasmophobia</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/phasmofobia.png" alt="Phasmophobia">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Hogwarts Legacy</div>
+            <div class="hobby-card-img">
+              <img src="img/ximena/hogwarts.png" alt="Hogwarts Legacy">
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- CONTACTO -->
@@ -135,29 +225,41 @@
         <h2>// CONTACTO</h2>
         <div class="header-line"></div>
       </div>
-
-<div class="contact-links">
-
-  <!-- GITHUB -->
-  <a href="https://github.com/ximefacal" target="_blank" rel="noopener noreferrer" class="contact-item">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 008.2 11.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.6 2.2 3.5 1.6.1-.7.4-1.2.7-1.5-2.7-.3-5.6-1.3-5.6-6a4.7 4.7 0 011.2-3.2 4.3 4.3 0 01.1-3.1s1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.4 1 .2 2.1.1 3.1a4.7 4.7 0 011.2 3.2c0 4.7-2.9 5.7-5.6 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/>
-    </svg>
-    <span>github/ximefacal</span>
-  </a>
-
-  <!-- LINKEDIN -->
-  <a href="https://www.linkedin.com/in/ximena-facal/" target="_blank" rel="noopener noreferrer" class="contact-item">
-    <svg viewBox="0 0 24 24">
-      <path d="M4.98 3.5C4.98 5 3.9 6 2.5 6S0 5 0 3.5 1.08 1 2.5 1 4.98 2 4.98 3.5zM.5 8h4V24h-4zM8.5 8h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6V24h-4v-7.1c0-1.7 0-3.8-2.3-3.8s-2.6 1.8-2.6 3.7V24h-4z"/>
-    </svg>
-    <span>linkedin/ximena-facal</span>
-  </a>
-
-</div>
+      <div class="contact-links">
+        <a href="https://github.com/ximefacal" target="_blank" class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 008.2 11.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.6 2.2 3.5 1.6.1-.7.4-1.2.7-1.5-2.7-.3-5.6-1.3-5.6-6a4.7 4.7 0 011.2-3.2 4.3 4.3 0 01.1-3.1s1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.4 1 .2 2.1.1 3.1a4.7 4.7 0 011.2 3.2c0 4.7-2.9 5.7-5.6 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>github/ximefacal</span>
+        </a>
+        <a href="https://www.linkedin.com/in/ximena-facal/" target="_blank" class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 5 3.9 6 2.5 6S0 5 0 3.5 1.08 1 2.5 1 4.98 2 4.98 3.5zM.5 8h4V24h-4zM8.5 8h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6V24h-4v-7.1c0-1.7 0-3.8-2.3-3.8s-2.6 1.8-2.6 3.7V24h-4z"/></svg>
+          <span>linkedin/ximena-facal</span>
+        </a>
+      </div>
     </section>
 
   </main>
-  <script src="js/main.js"></script>
+
+  <script>
+    const cur  = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    document.addEventListener('mousemove', e => {
+      cur.style.left  = e.clientX + 'px';
+      cur.style.top   = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px';
+      ring.style.top  = e.clientY + 'px';
+    });
+    document.addEventListener('mouseover', e => {
+      const interactive = e.target.closest('a, button, .crew-card, .hobby-card');
+      if (interactive) {
+        ring.style.width  = '54px';
+        ring.style.height = '54px';
+        ring.style.opacity = '.9';
+      } else {
+        ring.style.width  = '34px';
+        ring.style.height = '34px';
+        ring.style.opacity = '.55';
+      }
+    });
+  </script>
 </body>
 </html>

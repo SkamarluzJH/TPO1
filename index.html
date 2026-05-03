@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dynamis — TP1</title>
+  <title>Dynamis | Sistema Nexus</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
 </head>
@@ -17,149 +17,25 @@
     <div id="scan-msg">ESCANEANDO SISTEMA...</div>
   </div>
 
-  <nav>
-    <div class="nav-logo">DYNAMIS</div>
-    <ul class="nav-links">
-      <li><a href="#tripulantes">Tripulantes</a></li>
-      <li><a href="#sobre-nosotros">Misión</a></li>
-      <li><a href="bitacora.html">Bitácora</a></li>
-    </ul>
-    <div class="nav-status">
-      <div class="status-dot"></div>
-      <span>SISTEMA ACTIVO</span>
-    </div>
-  </nav>
-
-  <section class="hero">
-    <div class="hero-badge">IFTS N°29 // TP1 // 2026</div>
-    <h1 class="hero-title">DYNAMIS <span>CREW</span></h1>
-    <p class="hero-subtitle">EQUIPO DE DESARROLLO WEB — MISIÓN EN CURSO</p>
-    <div class="typewriter-wrap"><span id="typewriter"></span></div>
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-number" data-target="4">0</span>
-        <span class="stat-label">Tripulantes</span>
+  <header class="nav-header">
+    <nav class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-bracket">[</span>DYNAMIS<span class="logo-bracket">]</span>
       </div>
-      <div class="stat">
-        <span class="stat-number" data-target="3">0</span>
-        <span class="stat-label">Tecnologías</span>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="navigate('home')">INICIO</button>
+        <button class="nav-btn" onclick="navigate('bitacora')">BITÁCORA</button>
+        <button class="nav-btn" onclick="scrollToIntegrantes()">INTEGRANTES</button>
       </div>
-      <div class="stat">
-        <span class="stat-number" data-target="1">0</span>
-        <span class="stat-label">Misión</span>
+      <div class="nav-status">
+        <div class="status-dot"></div>
+        <span>SISTEMA ACTIVO</span>
       </div>
-    </div>
-    <button class="btn-scan" onclick="triggerScan()">▶ INICIAR ESCANEO</button>
-  </section>
+    </nav>
+  </header>
 
-  <section id="tripulantes">
-    <div class="section-divider">
-      <h2>// TRIPULANTES</h2>
-      <div class="divider-line"></div>
-    </div>
-    <div class="crew-grid">
-
-      <a class="crew-card" href="integrante1.html">
-        <div class="crew-card-id">ID // CREW-001</div>
-        <div class="crew-avatar">A</div>
-        <div class="crew-name">Ximena Facal</div>
-        <div class="crew-role">FRONTEND DEV</div>
-        <div class="crew-skills">
-          <span class="skill-tag">HTML</span>
-          <span class="skill-tag">CSS</span>
-          <span class="skill-tag">JS</span>
-        </div>
-        <div class="crew-arrow">↗</div>
-      </a>
-
-      <a class="crew-card" href="integrante2.html">
-        <div class="crew-card-id">ID // CREW-002</div>
-        <div class="crew-avatar">B</div>
-        <div class="crew-name">Franco Guarachi</div>
-        <div class="crew-role">UI DESIGNER</div>
-        <div class="crew-skills">
-          <span class="skill-tag">CSS</span>
-          <span class="skill-tag">Figma</span>
-          <span class="skill-tag">Git</span>
-        </div>
-        <div class="crew-arrow">↗</div>
-      </a>
-
-      <a class="crew-card" href="integrante3.html">
-        <div class="crew-card-id">ID // CREW-003</div>
-        <div class="crew-avatar">C</div>
-        <div class="crew-name">Rodrigo Pinto</div>
-        <div class="crew-role">FULLSTACK DEV</div>
-        <div class="crew-skills">
-          <span class="skill-tag">JS</span>
-          <span class="skill-tag">Node</span>
-          <span class="skill-tag">SQL</span>
-        </div>
-        <div class="crew-arrow">↗</div>
-      </a>
-
-      <a class="crew-card" href="integrante4.html">
-        <div class="crew-card-id">ID // CREW-004</div>
-        <div class="crew-avatar">D</div>
-        <div class="crew-name">Mara Skaarup</div>
-        <div class="crew-role">BACKEND DEV</div>
-        <div class="crew-skills">
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">APIs</span>
-          <span class="skill-tag">Git</span>
-        </div>
-        <div class="crew-arrow">↗</div>
-      </a>
-
-    </div>
-  </section>
-
-  <section id="sobre-nosotros">
-    <div class="section-divider">
-      <h2>// MISIÓN</h2>
-      <div class="divider-line"></div>
-    </div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>Somos <span>DYNAMIS CREW</span>, un equipo de estudiantes del IFTS N°29 unidos para desarrollar este proyecto web como parte del Trabajo Práctico 1.</p>
-        <p>Nuestra misión es construir un sitio cohesionado donde cada integrante pueda presentarse, mostrar sus habilidades y dejar registro del proceso en nuestra <span>bitácora de desarrollo</span>.</p>
-        <p>Tecnologías utilizadas: <span>HTML5</span>, <span>CSS3</span> y <span>JavaScript</span> puro, con despliegue en Vercel.</p>
-      </div>
-      <div class="about-terminal">
-        <div class="term-bar">
-          <div class="term-dot term-dot--red"></div>
-          <div class="term-dot term-dot--yellow"></div>
-          <div class="term-dot term-dot--green"></div>
-        </div>
-        <div class="term-line"><span class="cmd">$ </span>crew --status</div>
-        <div class="term-line"><span class="val">▶ EQUIPO: DYNAMIS CREW</span></div>
-        <div class="term-line"><span class="val">▶ INTEGRANTES: 4</span></div>
-        <div class="term-line"><span class="val">▶ ESTADO: EN DESARROLLO</span></div>
-        <div class="term-line"><span class="cmd">$ </span>deploy --target vercel</div>
-        <div class="term-line"><span class="val">▶ BUILD: OK</span></div>
-        <div class="term-line"><span class="val">▶ DEPLOY: EXITOSO ✓</span></div>
-        <div class="term-line"><span class="cmd">$ </span><span class="term-cursor">_</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="bitacora-preview">
-    <div class="bitacora-inner">
-      <div class="section-divider section-divider--centered">
-        <h2>// BITÁCORA</h2>
-      </div>
-      <p>Registramos cada decisión de diseño, dificultad superada y cambio importante en nuestra bitácora de misión.</p>
-      <a class="btn-outline" href="bitacora.html">VER BITÁCORA →</a>
-    </div>
-  </section>
-
-  <footer>
-    <span>NEXUS CREW © 2025</span>
-    <span>IFTS N°29 — TP1</span>
-    <span>DESPLEGADO EN VERCEL</span>
-  </footer>
+  <main id="root"></main>
 
   <script src="js/main.js"></script>
-
 </body>
 </html>

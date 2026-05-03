@@ -1,36 +1,28 @@
 /* ============================================
-   DYNAMIS CREW — TP1
-   Archivo: css/styles.css
+   DYNAMIS — Sistema Nexus (Tema Espacial)
+   Arquitectura SPA Vanilla JS
+   css/styles.css
    ============================================ */
 
 /* ── 1. VARIABLES ── */
 :root {
-  --bg:          #050810;
-  --bg2:         #090d1a;
-  --bg3:         #0d1225;
-  --cyan:        #00f5ff;
-  --cyan-dim:    rgba(0,245,255,0.12);
-  --cyan-glow:   rgba(0,245,255,0.45);
-  --cyan-border: rgba(0,245,255,0.25);
-  --green:       #39ff14;
-  --red:         #ff2d55;
-  --yellow:      #ffd700;
-  --text:        #c8ddf0;
-  --text-dim:    #4a6a80;
-  --text-muted:  #2a4a60;
-
-  /* Aliases usados en index.html */
-  --bg2:    #090d1a;
-  --border: rgba(0,245,255,0.25);
+  --bg:         #050810;
+  --bg2:        #090d1a;
+  --bg3:        #0d1225;
+  --cyan:       #00f5ff;
+  --cyan-dim:   rgba(0,245,255,0.12);
+  --cyan-glow:  rgba(0,245,255,0.45);
+  --cyan-border:rgba(0,245,255,0.25);
+  --green:      #39ff14;
+  --red:        #ff2d55;
+  --yellow:     #ffd700;
+  --text:       #c8ddf0;
+  --text-dim:   #4a6a80;
+  --text-muted: #2a4a60;
 }
 
 /* ── 2. RESET ── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
@@ -52,11 +44,8 @@ body::before {
   position: fixed;
   inset: 0;
   background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(0,0,0,0.08) 3px,
-    rgba(0,0,0,0.08) 4px
+    0deg, transparent, transparent 3px,
+    rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px
   );
   pointer-events: none;
   z-index: 100;
@@ -65,8 +54,7 @@ body::before {
 /* ── 3. CURSOR PERSONALIZADO ── */
 #cursor {
   position: fixed;
-  width: 10px;
-  height: 10px;
+  width: 10px; height: 10px;
   border-radius: 50%;
   background: var(--cyan);
   box-shadow: 0 0 10px var(--cyan), 0 0 22px var(--cyan-glow);
@@ -78,8 +66,7 @@ body::before {
 
 #cursor-ring {
   position: fixed;
-  width: 34px;
-  height: 34px;
+  width: 34px; height: 34px;
   border-radius: 50%;
   border: 1px solid var(--cyan);
   pointer-events: none;
@@ -97,23 +84,15 @@ body::before {
   z-index: 600;
   pointer-events: none;
 }
-
 #scan-overlay.active { display: block; }
-
 #scan-line {
-  position: absolute;
-  left: 0; right: 0;
-  height: 2px;
+  position: absolute; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, transparent, var(--cyan), transparent);
   box-shadow: 0 0 14px var(--cyan);
-  top: 0;
   animation: scanMove 1.4s ease-in-out forwards;
 }
-
 #scan-msg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Orbitron', sans-serif;
   font-size: 1rem;
@@ -122,33 +101,10 @@ body::before {
   letter-spacing: 6px;
   animation: fadeMsg 1.4s ease forwards;
 }
-
-/* ── 5. ANIMACIONES GLOBALES ── */
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: .3; }
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes scanMove {
-  0%   { top: 0;    opacity: 1; }
+  0%   { top: 0; opacity: 1; }
   100% { top: 100%; opacity: .2; }
 }
-
-/* Alias usado en index.html */
-@keyframes scan {
-  0%   { top: 0;    opacity: 1; }
-  100% { top: 100%; opacity: .2; }
-}
-
 @keyframes fadeMsg {
   0%   { opacity: 0; transform: translate(-50%,-50%) scale(.9); }
   25%  { opacity: 1; transform: translate(-50%,-50%) scale(1); }
@@ -156,109 +112,12 @@ body::before {
   100% { opacity: 0; }
 }
 
-@keyframes glowPulse {
-  0%, 100% { text-shadow: 0 0 10px var(--cyan-glow); }
-  50%       { text-shadow: 0 0 28px var(--cyan-glow), 0 0 50px var(--cyan-dim); }
-}
-
-@keyframes smashIn {
-  0%   { opacity: 0; transform: scale(1.06) translateY(-16px); }
-  100% { opacity: 1; transform: scale(1)    translateY(0); }
-}
-
-@keyframes sfxPop {
-  0%   { transform: translate(-50%,-50%) scale(0)    rotate(-15deg); opacity: 0; }
-  55%  { transform: translate(-50%,-50%) scale(1.15) rotate(6deg);   opacity: 1; }
-  100% { transform: translate(-50%,-50%) scale(.9)   rotate(2deg);   opacity: 0; }
-}
-
-.smash-in { animation: smashIn .45s cubic-bezier(.25,.46,.45,.94) both; }
-
-.space-sfx {
-  position: fixed;
-  pointer-events: none;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--cyan);
-  text-shadow: 0 0 16px var(--cyan-glow), 0 0 32px var(--cyan-dim);
-  z-index: 9999;
-  letter-spacing: 2px;
-  animation: sfxPop .5s cubic-bezier(.175,.885,.32,1.275) forwards;
-}
-
-/* ── 6. NAVBAR — index.html ── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 500;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-  height: 64px;
-  background: rgba(5,8,16,0.85);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--cyan-border);
-}
-
-.nav-logo {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 1.1rem;
-  color: var(--cyan);
-  text-shadow: 0 0 12px var(--cyan-glow);
-  letter-spacing: 4px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-}
-
-.nav-links a {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: .78rem;
-  color: var(--text-dim);
-  text-decoration: none;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: color .2s, text-shadow .2s;
-}
-
-.nav-links a:hover {
-  color: var(--cyan);
-  text-shadow: 0 0 8px var(--cyan-glow);
-}
-
-.nav-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: .68rem;
-  color: var(--green);
-  letter-spacing: 2px;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 8px var(--green);
-  animation: pulse 1.8s ease-in-out infinite;
-}
-
-/* ── 7. NAVBAR — Ximena.html ── */
+/* ── 5. NAVBAR ── */
 .nav-header {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 500;
   background: rgba(5,8,16,.88);
-  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--cyan-border);
 }
@@ -274,7 +133,18 @@ nav {
   gap: 24px;
 }
 
+.nav-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--cyan);
+  text-shadow: 0 0 12px var(--cyan-glow);
+  letter-spacing: 5px;
+}
+
 .logo-bracket { color: var(--text-dim); }
+
+.nav-links { display: flex; gap: 8px; }
 
 .nav-btn {
   font-family: 'Share Tech Mono', monospace;
@@ -302,7 +172,27 @@ nav {
   background: var(--cyan-dim);
 }
 
-/* ── 8. LAYOUT RAÍZ ── */
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .68rem;
+  color: var(--green);
+  letter-spacing: 2px;
+}
+
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+
+/* ── 6. ROOT / LAYOUT ── */
 #root {
   max-width: 1200px;
   margin: 0 auto;
@@ -310,58 +200,46 @@ nav {
   min-height: 100vh;
 }
 
-/* ── 9. HERO — index.html ── */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 100px 40px 60px;
-  text-align: center;
-  position: relative;
+/* ── 7. ANIMACIONES GLOBALES ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.hero-badge {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: .72rem;
-  letter-spacing: 4px;
-  color: var(--cyan);
-  border: 1px solid var(--cyan-border);
-  padding: 6px 20px;
-  border-radius: 2px;
-  margin-bottom: 28px;
-  opacity: 0;
-  animation: fadeUp .6s ease .2s forwards;
+@keyframes blink { 50% { opacity: 0; } }
+
+@keyframes glowPulse {
+  0%,100% { text-shadow: 0 0 10px var(--cyan-glow); }
+  50%     { text-shadow: 0 0 28px var(--cyan-glow), 0 0 50px var(--cyan-dim); }
 }
 
-.hero-title {
+@keyframes smashIn {
+  0%   { opacity: 0; transform: scale(1.06) translateY(-16px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.smash-in { animation: smashIn .45s cubic-bezier(.25,.46,.45,.94) both; }
+
+/* SFX flotante */
+.space-sfx {
+  position: fixed;
+  pointer-events: none;
   font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
   font-weight: 900;
-  font-size: clamp(2.8rem, 8vw, 6rem);
-  color: #fff;
-  line-height: 1;
-  letter-spacing: 6px;
-  opacity: 0;
-  animation: fadeUp .7s ease .4s forwards;
-}
-
-.hero-title span {
   color: var(--cyan);
-  text-shadow: 0 0 20px var(--cyan-glow), 0 0 40px var(--cyan-dim);
-}
-
-.hero-subtitle {
-  margin-top: 16px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: clamp(.85rem, 2vw, 1.05rem);
-  color: var(--text-dim);
+  text-shadow: 0 0 16px var(--cyan-glow), 0 0 32px var(--cyan-dim);
+  z-index: 9999;
   letter-spacing: 2px;
-  opacity: 0;
-  animation: fadeUp .7s ease .6s forwards;
+  animation: sfxPop .5s cubic-bezier(.175,.885,.32,1.275) forwards;
+}
+@keyframes sfxPop {
+  0%   { transform: translate(-50%,-50%) scale(0) rotate(-15deg); opacity:0; }
+  55%  { transform: translate(-50%,-50%) scale(1.15) rotate(6deg);  opacity:1; }
+  100% { transform: translate(-50%,-50%) scale(.9)  rotate(2deg);  opacity:0; }
 }
 
-/* ── 10. HERO — Ximena.html ── */
+/* ── 8. SECCIÓN HERO ── */
 .hero-section {
   display: flex;
   flex-direction: column;
@@ -370,20 +248,49 @@ nav {
   padding: 40px 0 60px;
 }
 
+.hero-badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: 5px;
+  color: var(--cyan);
+  border: 1px solid var(--cyan-border);
+  padding: 6px 22px;
+  border-radius: 2px;
+  margin-bottom: 28px;
+  animation: fadeUp .6s ease .1s both;
+}
+
+.hero-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  color: #fff;
+  letter-spacing: 6px;
+  line-height: 1;
+  animation: fadeUp .6s ease .25s both;
+}
+
 .hero-title .title-accent {
   color: var(--cyan);
   animation: glowPulse 3s ease-in-out infinite;
   display: inline-block;
 }
 
-/* ── 11. TYPEWRITER ── */
+.hero-subtitle {
+  margin-top: 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(.8rem, 2vw, 1rem);
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  animation: fadeUp .6s ease .4s both;
+}
+
 .typewriter-wrap {
   margin-top: 32px;
   font-family: 'Share Tech Mono', monospace;
   font-size: .95rem;
   color: var(--cyan);
-  min-height: 1.5em;
-  opacity: 0;
+  min-height: 1.6em;
   animation: fadeUp .6s ease .55s both;
 }
 
@@ -392,12 +299,10 @@ nav {
   animation: blink .7s step-end infinite;
 }
 
-/* ── 12. STATS ── */
 .hero-stats {
   display: flex;
   gap: 56px;
   margin-top: 52px;
-  opacity: 0;
   animation: fadeUp .6s ease .7s both;
 }
 
@@ -423,7 +328,6 @@ nav {
   display: block;
 }
 
-/* ── 13. BOTÓN SCAN ── */
 .btn-scan {
   margin-top: 48px;
   font-family: 'Orbitron', sans-serif;
@@ -440,44 +344,12 @@ nav {
   transition: box-shadow .2s, transform .15s;
   animation: fadeUp .6s ease .85s both;
 }
-
 .btn-scan:hover {
   box-shadow: 0 0 22px var(--cyan-glow), 0 0 44px var(--cyan-dim);
   transform: translateY(-2px);
 }
 
-/* ── 14. SECTION HEADERS ── */
-
-/* index.html */
-.section-divider {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 0 40px;
-  margin-bottom: 48px;
-}
-
-.section-divider h2 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: .85rem;
-  font-weight: 700;
-  letter-spacing: 6px;
-  color: var(--cyan);
-  white-space: nowrap;
-}
-
-.section-divider--centered {
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.divider-line {
-  flex: 1;
-  height: 1px;
-  background: var(--cyan-border);
-}
-
-/* Ximena.html */
+/* ── 9. SECTION HEADER ── */
 .section-header {
   display: flex;
   align-items: center;
@@ -508,17 +380,13 @@ nav {
   white-space: nowrap;
 }
 
-/* ── 15. CREW GRID ── */
-#tripulantes { padding: 80px 40px; }
-
+/* ── 10. CREW GRID / TARJETAS ── */
 .crew-section { margin-top: 72px; }
 
 .crew-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .crew-card {
@@ -527,12 +395,14 @@ nav {
   padding: 28px 24px;
   position: relative;
   overflow: hidden;
-  text-decoration: none;
-  display: block;
   cursor: none;
   transition: border-color .25s, transform .25s, box-shadow .25s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* Línea superior animada en hover */
 .crew-card::before {
   content: '';
   position: absolute;
@@ -542,7 +412,6 @@ nav {
   transform: scaleX(0);
   transition: transform .3s ease;
 }
-
 .crew-card:hover::before,
 .crew-card.expanded::before { transform: scaleX(1); }
 
@@ -558,8 +427,7 @@ nav {
   grid-column: span 2;
 }
 
-/* Alias para index.html */
-.crew-card-id,
+/* ID y avatar */
 .card-id {
   font-family: 'Share Tech Mono', monospace;
   font-size: .62rem;
@@ -568,10 +436,8 @@ nav {
   margin-bottom: 18px;
 }
 
-.crew-avatar,
 .card-avatar {
-  width: 68px;
-  height: 68px;
+  width: 68px; height: 68px;
   border-radius: 50%;
   background: var(--cyan-dim);
   border: 2px solid var(--cyan);
@@ -587,25 +453,21 @@ nav {
   overflow: hidden;
 }
 
-.crew-avatar img,
 .card-avatar img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
   border-radius: 50%;
 }
 
-.crew-name,
 .card-name {
   font-family: 'Orbitron', sans-serif;
   font-size: .95rem;
   font-weight: 700;
   color: #fff;
   letter-spacing: 2px;
-  margin-bottom: 4px;
+  margin-bottom: 16px;
 }
 
-.crew-role,
 .card-role {
   font-family: 'Share Tech Mono', monospace;
   font-size: .68rem;
@@ -614,49 +476,31 @@ nav {
   margin-bottom: 18px;
 }
 
-.crew-skills,
+/* Skills preview */
 .card-skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 0;
 }
 
 .skill-tag {
   font-family: 'Share Tech Mono', monospace;
-  font-size: .6rem;
+  font-size: .85rem;
   color: var(--text-dim);
   border: 1px solid var(--cyan-border);
-  padding: 3px 10px;
+  padding: 7px 18px;
   border-radius: 2px;
   letter-spacing: 1px;
   transition: border-color .2s, color .2s;
 }
-
 .crew-card:hover .skill-tag,
 .crew-card.expanded .skill-tag {
   border-color: rgba(0,245,255,.4);
   color: var(--text);
 }
 
-.crew-arrow,
-.card-arrow {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  font-size: 1rem;
-  color: var(--text-muted);
-  transition: color .2s, transform .2s;
-  pointer-events: none;
-}
-
-.crew-card:hover .crew-arrow,
-.crew-card:hover .card-arrow {
-  color: var(--cyan);
-  transform: translate(3px, -3px);
-}
-
-/* ── 16. CARD EXPANDIDA (SPA) ── */
+/* Botón revelar */
 .reveal-btn {
   font-family: 'Share Tech Mono', monospace;
   font-size: .65rem;
@@ -671,12 +515,12 @@ nav {
   text-align: left;
   transition: background .2s, border-color .2s;
 }
-
 .reveal-btn:hover {
   background: var(--cyan-dim);
   border-color: var(--cyan);
 }
 
+/* Detalle expandido */
 .card-details {
   display: none;
   margin-top: 20px;
@@ -693,7 +537,6 @@ nav {
   font-family: 'Share Tech Mono', monospace;
   font-size: .72rem;
 }
-
 .detail-key   { color: var(--text-muted); min-width: 80px; }
 .detail-value { color: var(--text); }
 
@@ -705,6 +548,7 @@ nav {
   margin: 18px 0 10px;
 }
 
+/* Archivos clasificados */
 .classified-btn {
   font-family: 'Orbitron', sans-serif;
   font-size: .62rem;
@@ -721,8 +565,9 @@ nav {
   clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
   transition: box-shadow .2s;
 }
-
-.classified-btn:hover { box-shadow: 0 0 18px var(--cyan-glow); }
+.classified-btn:hover {
+  box-shadow: 0 0 18px var(--cyan-glow);
+}
 
 .secret-files {
   display: none;
@@ -730,7 +575,6 @@ nav {
   padding-top: 18px;
   border-top: 1px dashed var(--cyan-border);
 }
-
 .secret-files.open { display: block; }
 
 .secret-grid {
@@ -751,7 +595,6 @@ nav {
   padding-left: 0;
   list-style: none;
 }
-
 .secret-grid li {
   font-family: 'Share Tech Mono', monospace;
   font-size: .7rem;
@@ -759,129 +602,87 @@ nav {
   padding: 3px 0;
   letter-spacing: 1px;
 }
-
 .secret-grid li::before {
   content: '▸ ';
   color: var(--cyan);
 }
 
-/* ── 17. MISIÓN / ABOUT ── */
-#sobre-nosotros {
-  padding: 80px 40px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Flecha */
+.card-arrow {
+  position: absolute;
+  bottom: 20px; right: 20px;
+  font-size: 1rem;
+  color: var(--text-muted);
+  transition: color .2s, transform .2s;
+  pointer-events: none;
+}
+.crew-card:hover .card-arrow {
+  color: var(--cyan);
+  transform: translate(3px, -3px);
 }
 
+/* ── 11. MISIÓN / ABOUT ── */
 .mission-section { margin-top: 72px; }
 
-.about-grid,
 .mission-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
+  gap: 32px;
+  align-items: start;
 }
 
-.about-text p,
 .mission-text p {
   font-size: .95rem;
   line-height: 1.9;
   color: var(--text);
   margin-bottom: 16px;
 }
-
-.about-text p span,
 .mission-text p span {
   font-family: 'Share Tech Mono', monospace;
   color: var(--cyan);
+  font-size: 1em;
 }
 
-/* ── 18. TERMINAL ── */
-.about-terminal,
+/* Terminal */
 .terminal-box {
   background: #000;
   border: 1px solid var(--cyan-border);
   border-radius: 4px;
   overflow: hidden;
 }
-
-.about-terminal {
-  padding: 24px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: .8rem;
-  line-height: 2;
-}
-
-.term-bar,
 .term-titlebar {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.term-titlebar {
   align-items: center;
+  gap: 8px;
   padding: 10px 16px;
   background: #0d0d0d;
   border-bottom: 1px solid #1a1a1a;
-  margin-bottom: 0;
 }
-
-.term-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.term-dot--red    { background: #ff5f57; }
-.term-dot--yellow { background: #ffbd2e; }
-.term-dot--green  { background: #28c940; }
-
+.term-dot { width: 10px; height: 10px; border-radius: 50%; }
 .term-title-text {
   font-family: 'Share Tech Mono', monospace;
   font-size: .65rem;
   color: var(--text-muted);
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   letter-spacing: 2px;
 }
-
 .term-body {
   padding: 20px 22px;
   font-family: 'Share Tech Mono', monospace;
   font-size: .78rem;
   line-height: 2.1;
 }
-
-.term-line        { color: var(--text-dim); }
-.term-line .cmd,
-.t-prompt         { color: var(--cyan); }
-.term-line .val,
-.t-ok             { color: var(--green); }
-.term-line .err   { color: var(--red); }
-.t-cmd            { color: #e0e0e0; }
-.t-out            { color: var(--text-dim); padding-left: 14px; }
-.t-cursor         { color: var(--cyan); animation: blink .8s step-end infinite; }
-.term-cursor      { color: #fff; }
-
-/* ── 19. BITÁCORA ── */
-#bitacora-preview {
-  padding: 80px 40px;
-  background: linear-gradient(180deg, transparent, rgba(0,245,255,0.02), transparent);
+.t-prompt { color: var(--cyan); margin-right: 8px; }
+.t-cmd    { color: #e0e0e0; }
+.t-out    { color: var(--text-dim); padding-left: 14px; }
+.t-ok     { color: var(--green); padding-left: 14px; }
+.t-cursor {
+  color: var(--cyan);
+  animation: blink .8s step-end infinite;
 }
 
-.bitacora-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.bitacora-inner p {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--text-dim);
-  margin-bottom: 32px;
-}
-
+/* ── 12. BITÁCORA ── */
 .bitacora-section { margin-top: 72px; }
 
 .bitacora-preview {
@@ -892,7 +693,6 @@ nav {
   position: relative;
   overflow: hidden;
 }
-
 .bitacora-preview::before {
   content: '';
   position: absolute;
@@ -900,7 +700,6 @@ nav {
   background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,245,255,.04), transparent);
   pointer-events: none;
 }
-
 .bitacora-preview p {
   font-size: .95rem;
   color: var(--text-dim);
@@ -908,10 +707,9 @@ nav {
   max-width: 560px;
   margin: 18px auto 36px;
 }
-
 .btn-outline {
   font-family: 'Orbitron', sans-serif;
-  font-size: .72rem;
+  font-size: .7rem;
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -924,15 +722,16 @@ nav {
   cursor: none;
   transition: background .2s, color .2s, box-shadow .2s;
 }
-
 .btn-outline:hover {
   background: var(--cyan);
   color: var(--bg);
   box-shadow: 0 0 22px var(--cyan-glow);
 }
 
-/* ── 20. PÁGINA BITÁCORA ── */
-.bitacora-page { padding-top: 20px; }
+/* ── 13. PÁGINA BITÁCORA ── */
+.bitacora-page {
+  padding-top: 20px;
+}
 
 .log-entry {
   background: var(--bg2);
@@ -942,7 +741,6 @@ nav {
   margin-bottom: 20px;
   transition: border-color .2s;
 }
-
 .log-entry:hover { border-color: var(--cyan); }
 
 .log-date {
@@ -952,7 +750,6 @@ nav {
   letter-spacing: 3px;
   margin-bottom: 10px;
 }
-
 .log-title {
   font-family: 'Orbitron', sans-serif;
   font-size: .88rem;
@@ -961,415 +758,488 @@ nav {
   letter-spacing: 2px;
   margin-bottom: 10px;
 }
-
 .log-body {
   font-size: .88rem;
   color: var(--text-dim);
   line-height: 1.8;
 }
 
-/* ── 21. CONTACTO ── */
+/* ── 14. RESPONSIVE ── */
+@media (max-width: 900px) {
+  .nav-container { padding: 0 20px; }
+  #root { padding: 88px 20px 48px; }
+  .mission-grid { grid-template-columns: 1fr; }
+  .crew-card.expanded { grid-column: span 1; }
+  .secret-grid { grid-template-columns: 1fr; }
+  .profile-hero-layout { grid-template-columns: 1fr; }
+  .profile-photo-col { order: -1; }
+}
+
+@media (max-width: 600px) {
+  .hero-stats { gap: 28px; }
+  .crew-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hobby-cards-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── PROFILE CARDS (nombre arriba + foto full) ── */
+.profile-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: none;
+  border: 1px solid var(--cyan-border);
+  background: var(--bg2);
+  transition: border-color .25s, box-shadow .25s, transform .25s;
+  border-radius: 4px;
+}
+
+.profile-card:hover {
+  border-color: var(--cyan);
+  box-shadow:
+    0 0 22px rgba(0,245,255,0.35),
+    0 0 50px rgba(0,245,255,0.12);
+  transform: translateY(-4px);
+}
+
+/* Línea superior animada en hover */
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  transform: scaleX(0);
+  transition: transform .3s ease;
+  z-index: 3;
+}
+.profile-card:hover::before { transform: scaleX(1); }
+
+.profile-card-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px var(--cyan-glow);
+  text-align: center;
+  text-transform: uppercase;
+  padding: 14px 16px 12px;
+  background: var(--bg2);
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid var(--cyan-border);
+  transition: text-shadow .25s;
+}
+
+.profile-card:hover .profile-card-name {
+  text-shadow: 0 0 18px var(--cyan-glow), 0 0 34px rgba(0,245,255,0.3);
+}
+
+.profile-card-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--bg3);
+}
+
+.profile-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.85) saturate(.9);
+  transition: filter .35s, transform .35s;
+}
+
+.profile-card:hover .profile-card-photo img {
+  filter: brightness(1) saturate(1.05);
+  transform: scale(1.04);
+}
+
+.profile-card-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--cyan);
+  text-shadow: 0 0 20px var(--cyan-glow);
+  background: var(--bg3);
+}
+
+/* Corners decoration */
+.profile-card-photo::before,
+.profile-card-photo::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--cyan);
+  border-style: solid;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .25s;
+}
+.profile-card:hover .profile-card-photo::before,
+.profile-card:hover .profile-card-photo::after { opacity: 1; }
+.profile-card-photo::before {
+  top: 8px; left: 8px;
+  border-width: 1px 0 0 1px;
+}
+.profile-card-photo::after {
+  bottom: 8px; right: 8px;
+  border-width: 0 1px 1px 0;
+}
+
+/* ── HOBBY SECTION — nuevo diseño ── */
+/* Sección por categoría (Música, Películas, etc.) */
+.hobby-category {
+  margin-bottom: 52px;
+}
+
+.hobby-category-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.hobby-category-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--cyan-border);
+}
+
+/* Grilla horizontal de cards de hobbies */
+.hobby-cards-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+/* Cada card de hobby: título arriba, imagen abajo */
+.hobby-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg2);
+  border: 1px solid var(--cyan-border);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: none;
+  transition: border-color .25s, box-shadow .25s, transform .25s;
+  position: relative;
+}
+
+.hobby-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  transform: scaleX(0);
+  transition: transform .3s ease;
+  z-index: 2;
+}
+
+.hobby-card:hover::before { transform: scaleX(1); }
+
+.hobby-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0,245,255,0.2);
+  transform: translateY(-4px);
+}
+
+.hobby-card-title {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .78rem;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 12px 14px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--cyan-border);
+  text-align: center;
+  line-height: 1.3;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hobby-card-img {
+  position: relative;
+  width: 100%;
+  /* Proporción de poster (2:3) para películas/series, 16:9 para música */
+  flex: 1;
+  overflow: hidden;
+  background: var(--bg3);
+  min-height: 200px;
+}
+
+.hobby-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+  filter: brightness(.8) saturate(.85);
+  transition: filter .3s, transform .3s;
+}
+
+.hobby-card:hover .hobby-card-img img {
+  filter: brightness(1) saturate(1);
+  transform: scale(1.04);
+}
+
+/* ── PERFIL INDIVIDUAL — HERO LAYOUT ── */
+/* Hero con nombre a la izquierda y foto a la derecha */
+.profile-hero-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+  padding: 40px 0 60px;
+}
+
+.profile-hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-hero-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  color: #fff;
+  letter-spacing: 4px;
+  line-height: 1.05;
+  animation: fadeUp .6s ease .1s both;
+}
+
+.profile-hero-title .title-accent {
+  color: var(--cyan);
+  animation: glowPulse 3s ease-in-out infinite;
+  display: block;
+}
+
+.profile-hero-subtitle {
+  margin-top: 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(.75rem, 1.5vw, .9rem);
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  animation: fadeUp .6s ease .25s both;
+  margin-bottom: 32px;
+}
+
+/* Caja "Sobre mí" debajo del título */
+.profile-about-box {
+  background: var(--bg2);
+  border: 1px solid var(--cyan-border);
+  padding: 24px 28px;
+  animation: fadeUp .6s ease .4s both;
+  position: relative;
+}
+
+
+.profile-about-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: var(--cyan);
+  margin-bottom: 16px;
+}
+
+.profile-about-text p {
+  font-size: .92rem;
+  line-height: 1.85;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.profile-about-text p:last-child { margin-bottom: 0; }
+
+.profile-about-text p span {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--cyan);
+}
+
+/* Foto del perfil */
+.profile-photo-col {
+  width: 340px;
+  flex-shrink: 0;
+  animation: fadeUp .6s ease .2s both;
+}
+
+.profile-photo-frame {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border: 1px solid var(--cyan-border);
+  overflow: hidden;
+  position: relative;
+  background: var(--bg3);
+}
+
+.profile-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.9) saturate(.9);
+}
+
+.profile-photo-frame::before,
+.profile-photo-frame::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  border-color: var(--cyan);
+  border-style: solid;
+  z-index: 2;
+}
+.profile-photo-frame::before {
+  top: 10px; left: 10px;
+  border-width: 2px 0 0 2px;
+}
+.profile-photo-frame::after {
+  bottom: 10px; right: 10px;
+  border-width: 0 2px 2px 0;
+}
+
+/* ── CONTACT LINKS ── */
 .contact-links {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 1rem;
+  gap: 16px;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--cyan);
+  gap: 14px;
   text-decoration: none;
+  color: var(--text-dim);
   font-family: 'Share Tech Mono', monospace;
-  transition: transform .2s, text-shadow .2s;
+  font-size: .82rem;
+  letter-spacing: 2px;
+  padding: 14px 20px;
+  border: 1px solid var(--cyan-border);
+  background: var(--bg2);
+  transition: border-color .2s, color .2s, background .2s;
+}
+
+.contact-item:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: var(--cyan-dim);
 }
 
 .contact-item svg {
   width: 22px;
-  fill: var(--cyan);
-  transition: transform .2s, filter .2s;
+  height: 22px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
-.contact-item:hover {
-  transform: translateX(6px);
-  text-shadow: 0 0 5px var(--cyan);
-}
-
-.contact-item:hover svg {
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 5px var(--cyan));
-}
-
-/* ── 22. FOOTER ── */
-footer {
-  border-top: 1px solid var(--cyan-border);
-  padding: 32px 40px;
+/* ── PROFILE NAV BUTTONS ── */
+.profile-nav-buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: .7rem;
-  color: var(--text-dim);
-  letter-spacing: 2px;
+  padding: 20px 0 0;
+  margin-bottom: -20px;
 }
 
-/* ── 23. RESPONSIVE ── */
-@media (max-width: 1200px) {
-  .hero-stats { gap: 32px; }
-}
-
-@media (max-width: 900px) {
-  nav               { padding: 0 20px; }
-  .nav-container    { padding: 0 20px; }
-  .nav-links        { gap: 20px; }
-  .hero             { padding: 90px 20px 40px; }
-  .hero-stats       { gap: 24px; }
-  #root             { padding: 88px 20px 48px; }
-  .about-grid,
-  .mission-grid     { grid-template-columns: 1fr; }
-  .crew-card.expanded { grid-column: span 1; }
-  .secret-grid      { grid-template-columns: 1fr; }
-  #sobre-nosotros,
-  #tripulantes,
-  #bitacora-preview { padding: 60px 20px; }
-  footer            { flex-direction: column; gap: 12px; text-align: center; }
-}
-
-@media (max-width: 600px) {
-  .hero-stats { gap: 28px; }
-  .crew-grid  { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 400px) {
-  .nav-links       { display: none; }
-  .nav-status span { display: none; }
-  .hero-title      { font-size: 2.2rem; letter-spacing: 3px; }
-  .hero-stats      { flex-direction: column; gap: 16px; }
-  .stat-number     { font-size: 1.8rem; }
-  .section-divider { padding: 0 20px; }
-  footer           { padding: 24px 16px; }
-}
-
-/* ══════════════════════════════════════════
-   MARA — Estilos exclusivos
-   ══════════════════════════════════════════ */
-
-/* ── Contenedor principal ── */
-.mara-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 36px 80px;
-}
-
-/* ── Hero de Mara ── */
-.hero-section {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.profile-nav-btn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: transparent;
+  border: 1px solid var(--cyan-border);
+  padding: 10px 22px;
+  cursor: none;
+  text-decoration: none;
+  display: inline-flex;
   align-items: center;
-  text-align: center;
-  padding: 100px 36px 60px;
-  position: relative;
-  overflow: hidden;
+  gap: 8px;
+  transition: background .2s, border-color .2s, color .2s, box-shadow .2s;
 }
 
-.hero-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--cyan-border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--cyan-border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+.profile-nav-btn:hover {
+  background: var(--cyan-dim);
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px var(--cyan-glow);
+  color: #fff;
+}
+
+.profile-nav-btn.placeholder {
+  visibility: hidden;
   pointer-events: none;
 }
 
-.hero-tagline {
-  font-size: 1rem;
-  color: var(--text);
-  max-width: 520px;
-  position: relative;
-  z-index: 1;
-  border-left: 2px solid var(--cyan);
-  padding-left: 1rem;
-  text-align: left;
-  margin-top: 1rem;
-}
-
-/* ── Separadores de sección ── */
-.section-block {
-  padding: 72px 0;
-  border-top: 1px solid var(--cyan-border);
-}
-
-/* ── Sobre mí ── */
-.sobre-grid {
+/* Legacy: mantener .hobby-img-grid por si acaso */
+.hobby-img-grid {
   display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 3rem;
-  align-items: start;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 
-.sobre-img-wrap {
-  width: 200px;
-  aspect-ratio: 1;
-  border: 1px solid var(--cyan);
-  box-shadow: 0 0 18px var(--cyan-glow);
+.hobby-img-card {
+  position: relative;
+  border-radius: 4px;
   overflow: hidden;
+  border: 1px solid var(--cyan-border);
+  aspect-ratio: 16/9;
+  background: var(--bg3);
+  transition: border-color .25s, box-shadow .25s;
+  cursor: none;
 }
 
-.sobre-img-wrap img {
+.hobby-img-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 16px rgba(0,245,255,0.25);
+}
+
+.hobby-img-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(30%) contrast(1.1);
-}
-
-.img-placeholder {
-  width: 200px;
-  height: 200px;
-  background: var(--bg2);
-  border: 1px solid var(--cyan-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-}
-
-/* ── Proyectos ── */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.2rem;
-}
-
-.project-card {
-  background: var(--bg2);
-  border: 1px solid var(--cyan-border);
-  overflow: hidden;
-  transition: border-color .25s, box-shadow .25s, transform .25s;
-}
-
-.project-card:hover {
-  border-color: var(--cyan);
-  box-shadow: 0 0 24px rgba(0,245,255,.12);
-  transform: translateY(-3px);
-}
-
-.project-img {
-  height: 140px;
-  background: var(--bg3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--cyan-border);
-  overflow: hidden;
-}
-
-.project-img img { width: 100%; height: 100%; object-fit: cover; }
-
-.project-body { padding: 1.2rem; }
-
-.project-tag {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  color: var(--cyan);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
   display: block;
+  filter: brightness(.75) saturate(.8);
+  transition: filter .3s, transform .3s;
 }
 
-.project-body h3 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #fff;
-  margin-bottom: 0.5rem;
+.hobby-img-card:hover img {
+  filter: brightness(.9) saturate(1);
+  transform: scale(1.04);
 }
 
-.project-body p { font-size: 0.85rem; color: var(--text-dim); }
-
-/* ── Películas ── */
-.peliculas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
-}
-
-.pelicula-card {
-  background: var(--bg2);
-  border: 1px solid var(--cyan-border);
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
-  align-items: flex-start;
-  transition: border-color .25s, box-shadow .25s;
-}
-
-.pelicula-card:hover {
-  border-color: var(--cyan);
-  box-shadow: 0 0 18px rgba(0,245,255,.1);
-}
-
-.pelicula-img {
-  width: 60px;
-  height: 80px;
-  flex-shrink: 0;
-  background: var(--bg3);
-  border: 1px solid var(--cyan-border);
-  overflow: hidden;
-}
-
-.pelicula-img img { width: 100%; height: 100%; object-fit: cover; }
-
-.pelicula-body h3 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.4rem;
-  color: var(--cyan);
-}
-
-.pelicula-body p { font-size: 0.8rem; color: var(--text-dim); }
-
-/* ── Contacto con formulario ── */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-.contact-intro p {
-  font-size: 0.95rem;
-  color: var(--text);
-  margin-bottom: 1.5rem;
-}
-
-.contact-form { display: flex; flex-direction: column; gap: 0.8rem; }
-
-.contact-form input,
-.contact-form textarea {
-  background: var(--bg2);
-  border: 1px solid var(--cyan-border);
-  color: var(--text);
+.hobby-img-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 6px 10px;
+  background: linear-gradient(to top, rgba(5,8,16,.95), transparent);
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.78rem;
-  padding: 0.75rem 1rem;
-  outline: none;
-  transition: border-color .2s;
-  width: 100%;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus { border-color: var(--cyan); }
-
-.contact-form input::placeholder,
-.contact-form textarea::placeholder { color: var(--text-muted); }
-
-.contact-form textarea { height: 100px; resize: vertical; }
-
-.contact-form button {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  background: transparent;
+  font-size: .62rem;
   color: var(--cyan);
-  border: 1px solid var(--cyan);
-  padding: 0.8rem 2rem;
-  cursor: none;
-  transition: background .2s, color .2s, box-shadow .2s;
-  text-transform: uppercase;
-}
-
-.contact-form button:hover {
-  background: var(--cyan);
-  color: var(--bg);
-  box-shadow: 0 0 22px var(--cyan-glow);
-}
-
-/* ── Footer links de Mara ── */
-.footer-nav { display: flex; gap: 1.5rem; }
-.footer-nav a {
-  color: var(--text-dim);
-  text-decoration: none;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: .7rem;
   letter-spacing: 2px;
-  transition: color .2s;
-}
-.footer-nav a:hover { color: var(--cyan); }
-
-/* ── Responsive de Mara ── */
-@media (max-width: 700px) {
-  .sobre-grid { grid-template-columns: 1fr; }
-  .sobre-img-wrap,
-  .img-placeholder { width: 100%; height: 200px; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .mara-main { padding: 0 20px 60px; }
-}
-.foto-mara {
-    width: 260px;
-    height: 300px;
-    background-image: url('../img/mara.jpg');
-    background-size: cover;
-    background-position: center;
-    border-radius: 6px;
-
-    /* --- FUTURISTA / CYBERPUNK --- */
-    position: relative;
-    border: 2px solid var(--cyan);
-    box-shadow:
-        0 0 15px rgba(0,245,255,0.6),
-        0 0 35px rgba(0,245,255,0.25),
-        inset 0 0 15px rgba(0,245,255,0.3);
-    overflow: hidden;
-}
-
-/* Líneas neon animadas */
-.foto-mara::before,
-.foto-mara::after {
-    content: '';
-    position: absolute;
-    background: var(--cyan);
-    box-shadow: 0 0 12px var(--cyan-glow);
-    opacity: 0.8;
-    animation: cyberLines 3s linear infinite;
-}
-
-/* Línea horizontal arriba */
-.foto-mara::before {
-    top: 0;
-    left: 0;
-    height: 2px;
-    width: 100%;
-}
-
-/* Línea vertical izquierda */
-.foto-mara::after {
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 100%;
-}
-
-@keyframes cyberLines {
-    0%   { opacity: 0.2; }
-    50%  { opacity: 1; }
-    100% { opacity: 0.2; }
+  text-transform: uppercase;
 }

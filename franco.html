@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Franco Guarachi | Dynamis Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <header class="nav-header">
+    <nav class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-bracket">[</span>DYNAMIS<span class="logo-bracket">]</span>
+      </div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="window.location.href='index.html'">INICIO</button>
+        <button class="nav-btn" onclick="window.location.href='index.html?page=bitacora'">BITÁCORA</button>
+        <button class="nav-btn active" onclick="window.location.href='index.html'">INTEGRANTES</button>
+      </div>
+      <div class="nav-status">
+        <div class="status-dot"></div>
+        <span>SISTEMA ACTIVO</span>
+      </div>
+    </nav>
+  </header>
+
+  <main id="root">
+
+    <div class="profile-nav-buttons">
+      <a href="ximena.html" class="profile-nav-btn">← ATRÁS</a>
+      <a href="rodrigo.html" class="profile-nav-btn">SIGUIENTE →</a>
+    </div>
+
+    <!-- HERO: nombre + sobre mí a la izquierda, foto a la derecha -->
+    <div class="profile-hero-layout">
+
+      <div class="profile-hero-left">
+        <div class="hero-badge" style="align-self:flex-start; margin-bottom:20px; animation: fadeUp .6s ease .1s both;">PORTFOLIO PERSONAL</div>
+
+        <h1 class="profile-hero-title">
+          FRANCO
+          <span class="title-accent">GUARACHI</span>
+        </h1>
+        <p class="profile-hero-subtitle">DESARROLLADOR EN FORMACIÓN</p>
+
+        <div class="profile-about-box">
+          <div class="profile-about-label">// SOBRE MÍ</div>
+          <div class="profile-about-text">
+            <p>
+              ¡Buenas! Tengo 31 años, soy estudiante de <span>Desarrollo
+              de Software</span> y <span>Construcciones Livianas Industrializadas</span>.
+            </p>
+            <p>
+              Soy freelancer como <span>analista de datos</span>, hice el curso de Google
+              e IBM, normalmente uso <span>Looker</span> y <span>Google Sheets</span>.
+            </p>
+            <p>
+              Saliendo de la parte tecnológica, doy clases de apoyo en matemáticas
+              para alumnos de secundaria, también en las vacaciones trabajo en la construcción.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOTO -->
+      <div class="profile-photo-col">
+        <div class="profile-photo-frame">
+          <!-- Reemplazar src por foto propia -->
+          <img src="img/franco/foto.png"
+               alt="Franco Guarachi"
+               onerror="this.src='https://picsum.photos/seed/franco_portrait/400/530'">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- HABILIDADES -->
+    <section class="crew-section">
+      <div class="section-header">
+        <h2>// HABILIDADES</h2>
+        <div class="header-line"></div>
+      </div>
+      <div class="crew-grid">
+        <div class="crew-card">
+          <div class="card-name">TECNOLOGÍAS</div>
+          <div class="card-skills">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Looker</span>
+            <span class="skill-tag">C#</span>
+          </div>
+        </div>
+        <div class="crew-card">
+          <div class="card-name">EN APRENDIZAJE</div>
+          <div class="card-skills">
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">Entorno AWS</span>
+            <span class="skill-tag">React</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOBBIES -->
+    <section class="crew-section">
+      <div class="section-header">
+        <h2>// HOBBIES</h2>
+        <div class="header-line"></div>
+      </div>
+
+      <!-- MÚSICA -->
+      <div class="hobby-category">
+        <div class="hobby-category-title">🎶 MÚSICA</div>
+        <div class="hobby-cards-row">
+          <div class="hobby-card">
+            <div class="hobby-card-title">Nirvana</div>
+            <div class="hobby-card-img">
+              <!-- Reemplazar src por imagen propia -->
+              <img src="img/franco/nirvana.png" alt="Nirvana">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Radiohead</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/radiohead.png" alt="Radiohead">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Dua Lipa</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/dualipa.png" alt="Dua Lipa">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Linkin Park</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/linkinpark.png" alt="Linkin Park">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERIES -->
+      <div class="hobby-category">
+        <div class="hobby-category-title">🎬 SERIES</div>
+        <div class="hobby-cards-row">
+          <div class="hobby-card">
+            <div class="hobby-card-title">Doctor House</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/house.png" alt="Doctor House">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Breaking Bad</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/breakingbad.png" alt="Breaking Bad">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Better Call Saul</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/bettercallsaul.png" alt="Better Call Saul">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">The Boys</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/theboys.png" alt="The Boys">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PELÍCULAS -->
+      <div class="hobby-category">
+        <div class="hobby-category-title">🎬 PELÍCULAS</div>
+        <div class="hobby-cards-row">
+          <div class="hobby-card">
+            <div class="hobby-card-title">Fight Club</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/fightclub.png" alt="Fight Club">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Volver al Futuro</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/volveralfuturo.png" alt="Volver al Futuro">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Spiderman</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/spiderman.png" alt="Spiderman">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">El Efecto Mariposa</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/elefectomariposa.png" alt="El Efecto Mariposa">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAMING -->
+      <div class="hobby-category">
+        <div class="hobby-category-title">🎮 GAMING</div>
+        <div class="hobby-cards-row">
+          <div class="hobby-card">
+            <div class="hobby-card-title">Metal Gear Solid V</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/mgsv.png" alt="Metal Gear Solid V">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Project Zomboid</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/projectzomboid.png" alt="Project Zomboid">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Kingdom Come</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/kindomecomedeliverance.png" alt="Kingdom Come">
+            </div>
+          </div>
+          <div class="hobby-card">
+            <div class="hobby-card-title">Fallout 4</div>
+            <div class="hobby-card-img">
+              <img src="img/franco/fallout4.png" alt="Fallout 4">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="mission-section">
+      <div class="section-header">
+        <h2>// CONTACTO</h2>
+        <div class="header-line"></div>
+      </div>
+      <div class="contact-links">
+        <a href="https://github.com/FrancoG31" target="_blank" class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12a12 12 0 008.2 11.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.6 2.2 3.5 1.6.1-.7.4-1.2.7-1.5-2.7-.3-5.6-1.3-5.6-6a4.7 4.7 0 011.2-3.2 4.3 4.3 0 01.1-3.1s1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.4 1 .2 2.1.1 3.1a4.7 4.7 0 011.2 3.2c0 4.7-2.9 5.7-5.6 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>github/francoG31</span>
+        </a>
+        <a href="https://www.linkedin.com/in/franco-guarachi/" target="_blank" class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 5 3.9 6 2.5 6S0 5 0 3.5 1.08 1 2.5 1 4.98 2 4.98 3.5zM.5 8h4V24h-4zM8.5 8h3.6v2.2h.1c.5-.9 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6V24h-4v-7.1c0-1.7 0-3.8-2.3-3.8s-2.6 1.8-2.6 3.7V24h-4z"/></svg>
+          <span>linkedin/franco-guarachi</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const cur  = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    document.addEventListener('mousemove', e => {
+      cur.style.left  = e.clientX + 'px';
+      cur.style.top   = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px';
+      ring.style.top  = e.clientY + 'px';
+    });
+    document.addEventListener('mouseover', e => {
+      const interactive = e.target.closest('a, button, .crew-card, .hobby-card');
+      if (interactive) {
+        ring.style.width  = '54px';
+        ring.style.height = '54px';
+        ring.style.opacity = '.9';
+      } else {
+        ring.style.width  = '34px';
+        ring.style.height = '34px';
+        ring.style.opacity = '.55';
+      }
+    });
+  </script>
+</body>
+</html>
