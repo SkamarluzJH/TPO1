@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rodrigo Pinto | Terminal</title>
+
+    <!-- Fuentes Sci-Fi -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/rodrigo.css" />
+</head>
+
+<body>
+    <!-- Elementos UI del JS -->
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+    <div id="scan-overlay">
+        <div id="scan-line"></div>
+        <div id="scan-msg">ESCANEANDO SISTEMA...</div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="nav-header">
+        <nav>
+            <div class="nav-logo">
+                <span class="logo-bracket">[</span>RODRIGO PINTO<span class="logo-bracket">]</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">/INICIO</a></li>
+                <li><a href="#sobre-mi">/ORIGEN</a></li>
+                <li><a href="#misiones">/MISIONES</a></li>
+                <li><a href="#contacto">/CONTACTO</a></li>
+            </ul>
+            <div class="nav-status">
+                <div class="status-dot"></div>
+                <span>SISTEMA EN LÍNEA</span>
+            </div>
+        </nav>
+    </header>
+
+    <main id="inicio">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-badge">ACCESO CONCEDIDO</div>
+
+            <div class="hero-avatar">
+                <img src="./img/r-batdog.webp" alt="Foto de Rodrigo"
+                    onerror="this.src='https://via.placeholder.com/150/00f5ff/050810?text=RGP'">
+            </div>
+
+            <h1 class="hero-title">
+                RODRIGO <span>PINTO</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                DESARROLLADOR FULL STACK JR.
+            </p>
+
+            <div class="typewriter-wrap">
+                <span id="typewriter"></span>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-target="2">0</span>
+                    <span class="stat-label">PROYECTOS</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="13">0</span>
+                    <span class="stat-label">TECNOLOGÍAS</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-label">COMPROMISO %</span>
+                </div>
+            </div>
+
+            <button class="btn-scan" onclick="triggerScan()">INICIAR ESCANEO</button>
+        </section>
+
+        <!-- SOBRE MÍ  -->
+        <section id="sobre-mi" class="mission-section" style="padding: 60px 40px; max-width: 1000px; margin: 0 auto;">
+            <div class="section-divider">
+                <h2>// HISTORIA DE ORIGEN</h2>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="about-terminal">
+                <div class="term-bar">
+                    <div class="term-dot" style="background: var(--red)"></div>
+                    <div class="term-dot" style="background: var(--cyan)"></div>
+                    <div class="term-dot" style="background: var(--green)"></div>
+                </div>
+                <div class="term-line"><span class="cmd">root@rgp:~$</span> whoami</div>
+                <div class="term-line val">Soy un desarrollador Full Stack con sólidos fundamentos en tecnologías
+                    frontend (HTML, CSS, JS) y lenguajes backend corporativos (Java, C#).</div>
+                <br>
+                <div class="term-line"><span class="cmd">root@rgp:~$</span> cat focus.txt</div>
+                <div class="term-line val">Mi enfoque es la creación de aplicaciones eficientes, código limpio y BD
+                    relacionales (MySQL, SQL Server). Comprometido con arquitecturas escalables.</div>
+                <br>
+                <div class="term-line"><span class="cmd">root@rgp:~$</span> cat current_mission.md</div>
+                <div class="term-line val">Dominar React, Spring Boot y herramientas de despliegue cloud/Docker (AWS).
+                </div>
+                <div class="term-line"><span class="cmd">root@rgp:~$</span> <span
+                        style="animation: blink 1s infinite;">_</span></div>
+            </div>
+        </section>
+
+        <!-- PROYECTOS -->
+        <section id="misiones" class="crew-section" style="padding: 60px 40px;">
+            <div class="section-divider">
+                <h2>// ARCHIVOS DE MISIÓN</h2>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="crew-grid">
+                <div class="crew-card"><a href="https://github.com/rodgpinto/Dynamis" target="_blank">
+
+                        <img src="./img/r-dynamislogo.png" alt="Dynamis" class="card-img"
+                            onerror="this.onerror=null; this.src='https://via.placeholder.com/300x150/00f5ff/050810?text=DYNAMIS'">
+                        <div class="crew-name">DYNAMIS</div>
+                        <div class="crew-role">SISTEMA GIMNASIO</div>
+                        <p style="font-size: 0.8rem; color: var(--text); margin-bottom: 15px;">Proyecto desarrollado en
+                            Kotlin enfocado en la gestión (CRUD) para un gimnasio.</p>
+                        <div class="crew-skills">
+                            <span class="skill-tag">KOTLIN</span>
+                            <span class="skill-tag">CRUD</span>
+                    </a>
+                </div>
+                <div class="crew-arrow">↗</div>
+            </div>
+
+            <div class="crew-card"><a href="https://pipogas.vercel.app" target="_blank">
+                    <img src="./img/r-pipo.png" alt="PipoGas" class="card-img"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/300x150/00f5ff/050810?text=PIPOGAS'">
+                    <div class="crew-name">PIPOGAS</div>
+                    <div class="crew-role">LANDING PAGE</div>
+                    <p style="font-size: 0.8rem; color: var(--text); margin-bottom: 15px;">Landing page para
+                        distribuidora
+                        de gas envasado. UX atractiva y funcional.</p>
+                    <div class="crew-skills">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JS</span>
+                </a>
+            </div>
+            <div class="crew-arrow">↗</div>
+            </div>
+            </div>
+        </section>
+
+        <!-- HABILIDADES -->
+        <section class="crew-section" style="padding: 0 40px 60px;">
+            <div class="section-divider">
+                <h2>// ARSENAL TÉCNICO</h2>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="crew-grid">
+                <div class="crew-card">
+                    <div class="crew-name">TECNOLOGÍAS DOMINADAS</div>
+                    <div class="crew-skills" style="margin-top: 15px;">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Java / Spring</span>
+                        <span class="skill-tag">C# / .NET</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">SQL Server</span>
+                    </div>
+                </div>
+
+                <div class="crew-card">
+                    <div class="crew-name">EN ENTRENAMIENTO</div>
+                    <div class="crew-skills" style="margin-top: 15px;">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PELÍCULAS -->
+        <section class="crew-section" style="padding: 0 40px 60px;">
+            <div class="section-divider">
+                <h2>// CINTAS DE RECREACIÓN</h2>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="crew-grid">
+                <div class="crew-card">
+                    <img src="./img/r-interestelar.jpg" alt="Interestelar" class="poster-img"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/300x450/090d1a/00f5ff?text=INTERESTELAR'">
+                    <div class="crew-name">INTERESTELAR</div>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Viaje espacial para encontrar condiciones
+                        necesarias para reemplazar a la Tierra.</p>
+                </div>
+
+                <div class="crew-card">
+                    <img src="./img/r-manOnFire.jpg" alt="Hombre en llamas" class="poster-img"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/300x450/090d1a/00f5ff?text=HOMBRE_EN_LLAMAS'">
+                    <div class="crew-name">HOMBRE EN LLAMAS</div>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Exagente de la CIA se venga de sus captores
+                        tras el secuestro de la niña que protegía.</p>
+                </div>
+
+                <div class="crew-card">
+                    <img src="./img/r-batman.jpg" alt="Batman" class="poster-img"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/300x450/090d1a/00f5ff?text=BATMAN'">
+                    <div class="crew-name">BATMAN: EL CABALLERO</div>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Batman pelea contra el Guasón, que pretende
+                        orillar a Gótica a la anarquía.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÚSICA / CANCIONES -->
+        <section class="crew-section" style="padding: 0 40px 60px;">
+            <div class="section-divider">
+                <h2>// FRECUENCIAS DE AUDIO</h2>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="crew-grid">
+                <div class="crew-card">
+                    <img src="./img/r-hazDeLuz.png" alt="Haz de Luz" class="album-img"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/300x300/090d1a/00f5ff?text=TRACK_01'">
+                    <div class="crew-name">"HAZ DE LUZ"</div>
+                    <div class="crew-role">RAYDEN</div>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">"Haz de luz" es una popular canción del
+                        artista español Rayden, a menudo interpretada junto a Blas Cantó, lanzada en 2018 (incluida en
+                        el álbum Sinónimo) y consolidada en sus directos. Es un tema emotivo de pop/rap centrado en
+                        valorar los pequeños detalles, la nostalgia, la esperanza y el amor incondicional.</p>
+                </div>
+
+                <div class="crew-card">
+                    <img src="./img/r-disparosDeSilencio.png" alt="Disparos de Silencio" class="album-img"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/300x300/090d1a/00f5ff?text=TRACK_02'">
+                    <div class="crew-name">"DISPAROS DE SILENCIO"</div>
+                    <div class="crew-role">NACH & WÖYZA</div>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">"Disparos de Silencio" es una canción de rap
+                        crítico del artista español Nach junto a Wöyza, lanzada en 2012. Trata sobre la violencia
+                        política y la represión contra líderes, activistas y figuras históricas que lucharon por la
+                        justicia, honrando su legado a pesar de ser silenciados.</p>
+                </div>
+
+                <div class="crew-card">
+                    <img src="./img/r-viviendoEnGerundio.png" alt="Viviendo en Gerundio" class="album-img"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/300x300/090d1a/00f5ff?text=TRACK_03'">
+                    <div class="crew-name">"VIVIENDO EN GERUNDIO"</div>
+                    <div class="crew-role">RAYDEN</div>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">"Viviendo en Gerundio" de Rayden (con Mäbu),
+                        lanzada en 2015 en el álbum En Alma y Hueso, es un canto al presente continuo, la inmediatez y
+                        la importancia de vivir el instante sin las ataduras del pasado o la ansiedad por el futuro. La
+                        letra invita a celebrar el "durante", valorando la vida como un proceso constante y activo,
+                        haciendo énfasis en disfrutar el "ahora".</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- JUEGOS -->
+        <section class="crew-section" style="padding: 0 40px 60px;">
+            <div class="section-divider">
+                <h2>// SIMULACIONES DE COMBATE</h2>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="crew-grid">
+                <div class="crew-card">
+                    <img src="./img/r-dota2.png" alt="Dota 2" class="card-img"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/300x150/090d1a/00f5ff?text=DOTA_2'">
+                    <div class="crew-name">DOTA 2</div>
+                    <div class="crew-role">MOBA</div>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Batallas estratégicas intensas en la arena de
+                        los Ancestros, donde cada enfrentamiento de 40 minutos exige coordinación absoluta.</p>
+                </div>
+
+                <div class="crew-card">
+                    <img src="./img/r-cs2.png" alt="Counter-Strike 2" class="card-img"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/300x150/090d1a/00f5ff?text=COUNTER_STRIKE_2'">
+                    <div class="crew-name">COUNTER STRIKE 2</div>
+                    <div class="crew-role">SHOOTER TÁCTICO</div>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Durante más de dos décadas, Counter-Strike ha
+                        brindado una experiencia competitiva de élite, una experiencia moldeada por millones de
+                        jugadores en todo el mundo. Ahora es el momento de comenzar el siguiente capítulo en la historia
+                        de CS. Esto es Counter-Strike 2.</p>
+                </div>
+
+                <div class="crew-card">
+                    <img src="./img/r-redDeadRedemption.png" alt="Red Dead Redemption 2" class="card-img"
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/300x150/090d1a/00f5ff?text=RED_DEAD_REDEMPTION_2'">
+                    <div class="crew-name">RED DEAD REDEMPTION 2</div>
+                    <div class="crew-role">ACCIÓN-AVENTURA</div>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Arthur Morgan and the Van der Linde Gang are
+                        outlaws on the run. With federal agents and bounty hunters massing on their heels, the gang must
+                        rob, steal, and fight their way across the rugged heartland in order to survive.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contacto" class="mission-section" style="padding: 0 40px 80px; max-width: 800px; margin: 0 auto;">
+            <div class="section-divider">
+                <h2>// TRANSMISIÓN ABIERTA</h2>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="about-terminal">
+                <form action="#" method="POST" class="cyber-form">
+                    <input type="text" id="nombre" name="nombre" class="cyber-input" placeholder=">_ NOMBRE EN CLAVE"
+                        required>
+                    <input type="email" id="email" name="email" class="cyber-input" placeholder=">_ FRECUENCIA (EMAIL)"
+                        required>
+                    <textarea id="mensaje" name="mensaje" rows="1" class="cyber-input" placeholder=">_ MENSAJE CIFRADO"
+                        required></textarea>
+                    <button type="submit" class="btn-scan" style="margin-top: 10px; width: 100%;">ENVIAR PAQUETE DE
+                        DATOS</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div style="display: flex; gap: 20px;">
+            <a href="https://github.com/rodgpinto" target="_blank" style="color: var(--cyan); text-decoration: none;">[
+                GITHUB ]</a>
+            <a href="mailto:rodrigo.guillermo.pinto@gmail.com" style="color: var(--cyan); text-decoration: none;">[
+                CORREO ]</a>
+        </div>
+        <div>SYS.VER 2.0.26 © RGP</div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

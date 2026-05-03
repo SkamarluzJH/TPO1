@@ -1,5 +1,5 @@
 // ============================================
-// NEXUS CREW — TP1
+// DYNAMIS CREW — TP1
 // Archivo: js/main.js
 // ============================================
 
@@ -19,6 +19,8 @@ document.querySelectorAll('a, button').forEach(el => {
   el.addEventListener('mouseenter', () => {
     ring.style.width  = '56px';
     ring.style.height = '56px';
+    
+
   });
   el.addEventListener('mouseleave', () => {
     ring.style.width  = '36px';
@@ -29,9 +31,10 @@ document.querySelectorAll('a, button').forEach(el => {
 
 // ── EFECTO TYPEWRITER ──
 const phrases = [
-  'Construyendo el futuro, una línea a la vez.',
-  'HTML · CSS · JavaScript · Vercel.',
   'Trabajo Práctico 1 — Proyecto Web en Equipo.',
+  'Construyendo el futuro, una línea a la vez.',
+  'HTML · CSS · JavaScript'
+  
 ];
 
 let phraseIndex = 0;
