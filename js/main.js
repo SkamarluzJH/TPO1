@@ -3,6 +3,30 @@
 // Archivo: js/main.js
 // ============================================
 
+// ── CUSTOM CURSOR ──
+const cur  = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+
+document.addEventListener('mousemove', e => {
+  cur.style.left  = e.clientX + 'px';
+  cur.style.top   = e.clientY + 'px';
+  ring.style.left = e.clientX + 'px';
+  ring.style.top  = e.clientY + 'px';
+}); 
+
+// El anillo crece al pasar por links y botones
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.width  = '56px';
+    ring.style.height = '56px';
+    
+
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width  = '36px';
+    ring.style.height = '36px';
+  });
+});
 
 // ── CURSOR PERSONALIZADO ──
 // En index.html el cursor existe en el HTML; en Ximena.html lo creamos por JS
@@ -10,6 +34,13 @@
   let cur  = document.getElementById('cursor');
   let ring = document.getElementById('cursor-ring');
 
+// ── EFECTO TYPEWRITER ──
+const phrases = [
+  'Trabajo Práctico 1 — Proyecto Web en Equipo.',
+  'Construyendo el futuro, una línea a la vez.',
+  'HTML · CSS · JavaScript'
+  
+];
   if (!cur) {
     cur  = document.createElement('div');
     ring = document.createElement('div');
