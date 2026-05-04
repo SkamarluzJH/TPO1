@@ -1,9 +1,3 @@
-// ============================================
-// DYNAMIS — Sistema Nexus
-// Archivo: js/main.js
-// Arquitectura SPA Vanilla JS
-// ============================================
-
 
 // ── BASE DE DATOS DEL EQUIPO ──
 const equipo = [
@@ -18,8 +12,6 @@ const equipo = [
     habilidades: ['HTML5', 'CSS3 Avanzado', 'JavaScript ES6', 'Figma'],
     foto: 'img/ximena/foto.png',
     profilePage: 'ximena.html',
-    peliculas: ['Iron Man', 'Spider-Verse', 'Matrix'],
-    discos: ['Random Access Memories', 'The Dark Side of the Moon', 'Discovery'],
   },
   {
     id: 'franco',
@@ -32,8 +24,6 @@ const equipo = [
     habilidades: ['CSS', 'Figma', 'Git', 'Node.js'],
     foto: 'img/franco/foto.png',
     profilePage: 'franco.html',
-    peliculas: ['The Dark Knight', 'Inception', 'Logan'],
-    discos: ['Abbey Road', 'Ok Computer', 'Thriller'],
   },
   {
     id: 'rodrigo',
@@ -44,10 +34,8 @@ const equipo = [
     base: 'La Nube Oscura',
     estado: 'CONECTADO',
     habilidades: ['JS', 'Node', 'SQL', 'Python'],
-    foto: 'img/avatar-rodrigo.jpg',
+    foto: 'img/rodrigo/r-batdog.webp',
     profilePage: 'rodrigo.html',
-    peliculas: ['Doctor Strange', 'Interstellar', 'Dune'],
-    discos: ['A Night at the Opera', 'Rumours', 'Back in Black'],
   },
   {
     id: 'mara',
@@ -60,8 +48,6 @@ const equipo = [
     habilidades: ['Python', 'APIs', 'Git', 'UI/UX'],
     foto: 'img/mara/foto.png',
     profilePage: 'mara.html',
-    peliculas: ['Scott Pilgrim', 'Akira', 'Guardianes de la Galaxia'],
-    discos: ['Demon Days', 'Currents', 'AM'],
   },
 ];
 
@@ -287,46 +273,139 @@ function Home() {
 
 
 // ── COMPONENTE: PÁGINA BITÁCORA ──
-const logs = [
+const bitacoraData = [
   {
-    fecha: '2026-04-01',
-    titulo: 'ARQUITECTURA SPA',
-    cuerpo: 'Decisión de estructura Single Page Application en Vanilla JS. El componente Home() y Bitacora() se renderizan dinámicamente. Preparación para migración a React.'
+    categoria: 'DECISIONES DE DISEÑO',
+    prefijo: 'DISEÑO',
+    catLabel: 'Diseño',
+    entradas: [
+      {
+        fecha: '01-04-2026',
+        titulo: 'ARQUITECTURA SPA',
+        cuerpo: 'Se decidió implementar una Single Page Application en Vanilla JS puro. Los componentes se renderizan dinámicamente sobre el elemento #root, evitando recargas de página y preparando la base para una futura migración a React.'
+      },
+      {
+        fecha: '01-04-2026',
+        titulo: 'ESTÉTICA CYBERPUNK / SCI-FI',
+        cuerpo: 'Definición de la identidad visual del proyecto: fondo oscuro con grilla de líneas sutiles, tipografías Orbitron y Share Tech Mono, paleta de cian (#00f5ff) y verde neón (#39ff14) como acentos principales. La estética HUD/terminal refuerza la temática del equipo.'
+      },
+      {
+        fecha: '02-04-2026',
+        titulo: 'TIPOGRAFÍAS GOOGLE FONTS',
+        cuerpo: 'Selección de Orbitron (700/900) para títulos y elementos de interfaz, Share Tech Mono para datos y etiquetas monospaciadas, y Exo 2 (300/400/600) para el cuerpo de texto. La combinación logra contraste entre lo "mecánico" y lo legible.'
+      },
+      {
+        fecha: '04-04-2026',
+        titulo: 'ESTRUCTURA BASE DEL PROYECTO',
+        cuerpo: 'Definición de la arquitectura de carpetas: HTML en la raíz, estilos en /css, lógica en /js, recursos en /img con subcarpetas por integrante. Creación de index.html como shell de la SPA y main.js como único archivo JS de la portada.'
+      },
+      {
+        fecha: '06-04-2026',
+        titulo: 'CURSOR PERSONALIZADO',
+        cuerpo: 'Implementación de cursor doble: un dot fijo en la posición exacta del mouse y un ring con transición suave que crece de 34px a 54px al pasar sobre elementos interactivos (a, button, .crew-card). Controlado con mousemove y mouseover delegado.'
+      },
+      {
+        fecha: '06-04-2026',
+        titulo: 'SISTEMA DE EFECTOS VISUALES',
+        cuerpo: 'Incorporación del overlay de escaneo (scan-overlay con scan-line animada), efecto typewriter con ciclo de escritura/borrado, contadores animados con easing cúbico sobre IntersectionObserver, y efecto SFX de texto flotante al interactuar con las tarjetas.'
+      },
+      {
+        fecha: '20-04-2026',
+        titulo: 'PERFILES INDIVIDUALES',
+        cuerpo: 'Creación de las cuatro páginas de perfil (ximena.html, franco.html, rodrigo.html, mara.html), secciones de habilidades, galería de hobbies categorizada por tipo, y sección de contacto.'
+      },
+      {
+        fecha: '20-04-2026',
+        titulo: 'GRID DE PERFILES EN PORTADA',
+        cuerpo: 'Diseño de tarjetas de tripulantes con foto a pantalla completa y nombre superpuesto. El grid de dos columnas permite escalar fácilmente sin romper el layout. Cada tarjeta aplica un efecto smash-in escalonado según su índice.'
+      },
+      {
+        fecha: '26-04-2026',
+        titulo: 'NAVEGACIÓN ENTRE PERFILES',
+        cuerpo: 'Decisión de agregar botones de navegación secuencial entre los perfiles individuales (Ximena → Franco → Rodrigo → Mara) sin pasar por la portada. Facilita la revisión de todos los integrantes en orden y mejora la experiencia de navegación.'
+      },
+      {
+        fecha: '03-05-2026',
+        titulo: 'PRIMER DEPLOY EN VERCEL',
+        cuerpo: 'Deploy inicial del proyecto. Build exitoso, todos los assets cargando correctamente. Configuración de dominio de producción y verificación de rutas relativas entre páginas.'
+      },
+    ]
   },
   {
-    fecha: '2026-04-05',
-    titulo: 'SISTEMA DE CURSOR PERSONALIZADO',
-    cuerpo: 'Implementado cursor doble con dot + ring. El ring crece al pasar por elementos interactivos (a, button, .crew-card) usando mouseover delegado.'
+    categoria: 'DIFICULTADES Y SOLUCIONES',
+    prefijo: 'ERROR',
+    catLabel: 'Dificultad',
+    entradas: [
+      {
+        fecha: '27-04-2026',
+        titulo: 'BOTÓN INTEGRANTES DESDE BITÁCORA',
+        problema: 'Al estar en la sección bitácora de la SPA y pulsar "INTEGRANTES" en el nav, la función scrollToIntegrantes() no encontraba el elemento #crew-section (que solo existe en la vista home) y no hacía nada.',
+        solucion: 'Se agregó una verificación: si #crew-section existe, hace scroll; si no, redirige directamente a ximena.html como punto de entrada al listado de perfiles.'
+      },
+      {
+        fecha: '27-04-2026',
+        titulo: 'ENLACE DE BITÁCORA DESDE PERFILES INDIVIDUALES',
+        problema: 'Los perfiles individuales son páginas HTML estáticas separadas que no tienen acceso al router de la SPA. El botón BITÁCORA en el nav usaba window.location.href=\'index.html#bitacora\', un anchor que no disparaba ningún comportamiento en main.js.',
+        solucion: 'Se cambió el href a index.html?page=bitacora y se agregó detección del parámetro en window.onload dentro de main.js, que lo lee con URLSearchParams y llama a navigate(\'bitacora\') si corresponde.'
+      },
+      {
+        fecha: '28-04-2026',
+        titulo: 'CENTRADO VERTICAL EN CARDS DE HABILIDADES',
+        problema: 'Las cards de "TECNOLOGÍAS" y "EN APRENDIZAJE" tenían alturas distintas según la cantidad de skill-tags. Esto hacía que el contenido del card con menos tags quedara pegado arriba en lugar de centrarse.',
+        solucion: 'Se aplicó display: flex, flex-direction: column y justify-content: center a .crew-card, y se eliminó el margin-bottom de .card-skills para que el flexbox tome el control del espaciado interno.'
+      },
+    ]
   },
   {
-    fecha: '2026-04-10',
-    titulo: 'TARJETAS EXPANDIBLES + ESTADO GLOBAL',
-    cuerpo: 'Se incorporó state.expandedCard para tracking del card abierto. Al expandir, el card ocupa grid-column: span 2. Los archivos clasificados tienen su propio estado state.secretOpen[id].'
-  },
-  {
-    fecha: '2026-04-15',
-    titulo: 'DEPLOY EN VERCEL',
-    cuerpo: 'Primer deploy exitoso. Build OK, todos los assets cargando correctamente. URL de producción activa.'
+    categoria: 'CAMBIOS IMPORTANTES',
+    prefijo: 'UPDATE',
+    catLabel: 'Futuros cambios',
+    entradas: [
+      {
+        fecha: '',
+        titulo: 'MIGRACIÓN A REACT',
+        cuerpo: 'El siguiente paso es migrar la arquitectura SPA a React, convirtiendo Home(), Bitacora() y los perfiles individuales en componentes reutilizables con JSX'
+      },
+    ]
   },
 ];
 
 function Bitacora() {
-  const entriesHTML = logs.map((log, i) => `
-    <div class="log-entry smash-in" style="animation-delay: ${i * 0.1}s">
-      <div class="log-date">// ${log.fecha}</div>
-      <div class="log-title">${log.titulo}</div>
-      <p class="log-body">${log.cuerpo}</p>
-    </div>
-  `).join('');
+  const todasLasEntradas = bitacoraData.flatMap(cat =>
+    cat.entradas.map(entry => ({ ...entry, categoria: cat.categoria, catLabel: cat.catLabel }))
+  );
+
+  const totalEntradas = todasLasEntradas.length;
+
+  const entradasHTML = todasLasEntradas.map((entry, i) => {
+    const delay = i * 0.07;
+    const bodyHTML = entry.problema
+      ? `<div class="log-problem"><span class="log-label">PROBLEMA:</span> ${entry.problema}</div>
+         <div class="log-solution"><span class="log-label">SOLUCION:</span> ${entry.solucion}</div>`
+      : `<p class="log-body">${entry.cuerpo}</p>`;
+
+    return `
+      <div class="log-entry smash-in" style="animation-delay: ${delay}s">
+        <div class="log-entry-header">
+          <span class="log-cat-label">// ${entry.catLabel}</span>
+          <span class="log-date">${entry.fecha}</span>
+        </div>
+        <div class="log-title">${entry.titulo}</div>
+        ${bodyHTML}
+      </div>
+    `;
+  }).join('');
 
   return `
     <section class="bitacora-page">
       <div class="section-header">
-        <h2>// BITÁCORA DE MISIÓN</h2>
+        <h2>// BITACORA DE MISION</h2>
         <div class="header-line"></div>
-        <span class="header-count">${logs.length} ENTRADAS</span>
+        <span class="header-count">${totalEntradas} ENTRADAS</span>
       </div>
-      ${entriesHTML}
+      <div class="log-list">
+        ${entradasHTML}
+      </div>
     </section>
   `;
 }
