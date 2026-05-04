@@ -20,6 +20,29 @@ El sitio incluye una portada con navegación dinámica tipo SPA (Single Page App
 4. Mara Skaarup — **[GitHub](https://github.com/SkamarluzJH)**
 
 ---
+## Muestra del index
+<p align="center">
+  <img src="./img/readme/inicio1.png" width="500">
+  <img src="./img/readme/inicio2.png" width="500">
+  <img src="./img/readme/inicio3.png" width="500">
+</p>
+
+---
+## Muestra de la sección integrantes
+<p align="center">
+  <img src="./img/readme/integrante1.png" width="500">
+  <img src="./img/readme/integrante2.png" width="500">
+  <img src="./img/readme/integrante3.png" width="500">
+  <img src="./img/readme/integrante4.png" width="500">
+</p>
+
+---
+## Muestra de la sección bitácora
+<p align="center">
+  <img src="./img/readme/bitacora.png" width="500">
+</p>
+
+---
 
 ## Tecnologías Utilizadas
 
