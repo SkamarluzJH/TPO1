@@ -23,6 +23,9 @@ El sitio incluye una portada con navegación dinámica tipo SPA (Single Page App
 ## Muestra del index
 <p align="center">
   <img src="./img/readme/inicio1.png" width="500">
+    <img src="./img/readme/inicio2.png" width="500">
+  <img src="./img/readme/inicio3.png" width="500">
+
   
 </p>
 
