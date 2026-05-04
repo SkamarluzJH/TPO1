@@ -1,5 +1,5 @@
 
-/* ── 1. VARIABLES ── */
+/* 1. VARIABLES */
 :root {
   --bg:         #050810;
   --bg2:        #090d1a;
@@ -16,7 +16,7 @@
   --text-muted: #2a4a60;
 }
 
-/* ── 2. RESET ── */
+/* 2. RESET */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -46,7 +46,7 @@ body::before {
   z-index: 100;
 }
 
-/* ── 3. CURSOR PERSONALIZADO ── */
+/* 3. CURSOR PERSONALIZADO */
 #cursor {
   position: fixed;
   width: 10px; height: 10px;
@@ -71,7 +71,7 @@ body::before {
   opacity: .55;
 }
 
-/* ── 4. SCAN OVERLAY ── */
+/* 4. SCAN OVERLAY */
 #scan-overlay {
   display: none;
   position: fixed;
@@ -107,7 +107,7 @@ body::before {
   100% { opacity: 0; }
 }
 
-/* ── 5. NAVBAR ── */
+/* 5. NAVBAR */
 .nav-header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -187,7 +187,7 @@ body::before {
 
 @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
 
-/* ── 6. ROOT / LAYOUT ── */
+/* 6. ROOT / LAYOUT */
 #root {
   max-width: 1200px;
   margin: 0 auto;
@@ -195,7 +195,7 @@ body::before {
   min-height: 100vh;
 }
 
-/* ── 7. ANIMACIONES GLOBALES ── */
+/* 7. ANIMACIONES GLOBALES */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(22px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -234,7 +234,7 @@ body::before {
   100% { transform: translate(-50%,-50%) scale(.9)  rotate(2deg);  opacity:0; }
 }
 
-/* ── 8. SECCIÓN HERO ── */
+/* 8. SECCIÓN HERO */
 .hero-section {
   display: flex;
   flex-direction: column;
@@ -344,7 +344,7 @@ body::before {
   transform: translateY(-2px);
 }
 
-/* ── 9. SECTION HEADER ── */
+/* 9. SECTION HEADER */
 .section-header {
   display: flex;
   align-items: center;
@@ -375,7 +375,7 @@ body::before {
   white-space: nowrap;
 }
 
-/* ── 10. CREW GRID / TARJETAS ── */
+/* 10. CREW GRID / TARJETAS */
 .crew-section { margin-top: 72px; }
 
 .crew-grid {
@@ -616,7 +616,7 @@ body::before {
   transform: translate(3px, -3px);
 }
 
-/* ── 11. MISIÓN / ABOUT ── */
+/* 11. MISIÓN / ABOUT */
 .mission-section { margin-top: 72px; }
 
 .mission-grid {
@@ -677,7 +677,7 @@ body::before {
   animation: blink .8s step-end infinite;
 }
 
-/* ── 12. BITÁCORA ── */
+/* 12. BITÁCORA */
 .bitacora-section { margin-top: 72px; }
 
 .bitacora-preview {
@@ -723,7 +723,7 @@ body::before {
   box-shadow: 0 0 22px var(--cyan-glow);
 }
 
-/* ── 13. PÁGINA BITÁCORA ── */
+/* 13. PÁGINA BITÁCORA */
 .bitacora-page {
   padding-top: 20px;
 }
@@ -754,7 +754,7 @@ body::before {
   margin-bottom: 12px;
 }
 
-/* "// Diseño" — misma fuente y color que los section-header h2 */
+/* "Diseño" — misma fuente y color que los section-header h2 */
 .log-cat-label {
   font-family: 'Orbitron', sans-serif;
   font-size: .82rem;
@@ -832,7 +832,7 @@ body::before {
 }
 
 
-/* ── 14. RESPONSIVE ── */
+/* 14. RESPONSIVE */
 @media (max-width: 900px) {
   .nav-container { padding: 0 20px; }
   #root { padding: 88px 20px 48px; }
@@ -850,7 +850,7 @@ body::before {
   .hobby-cards-row { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ── PROFILE CARDS (nombre arriba + foto full) ── */
+/* PROFILE CARDS (nombre arriba + foto full)*/
 .profile-card {
   position: relative;
   display: flex;
@@ -965,7 +965,7 @@ body::before {
   border-width: 0 1px 1px 0;
 }
 
-/* ── HOBBY SECTION — nuevo diseño ── */
+/* HOBBY SECTION — nuevo diseño */
 /* Sección por categoría (Música, Películas, etc.) */
 .hobby-category {
   margin-bottom: 52px;
@@ -1072,7 +1072,7 @@ body::before {
   transform: scale(1.04);
 }
 
-/* ── PERFIL INDIVIDUAL — HERO LAYOUT ── */
+/* PERFIL INDIVIDUAL — HERO LAYOUT */
 /* Hero con nombre a la izquierda y foto a la derecha */
 .profile-hero-layout {
   display: grid;
@@ -1189,7 +1189,7 @@ body::before {
   border-width: 0 2px 2px 0;
 }
 
-/* ── CONTACT LINKS ── */
+/* CONTACT LINKS */
 .contact-links {
   display: flex;
   flex-direction: column;
@@ -1224,7 +1224,7 @@ body::before {
   flex-shrink: 0;
 }
 
-/* ── PROFILE NAV BUTTONS ── */
+/* PROFILE NAV BUTTONS */
 .profile-nav-buttons {
   display: flex;
   justify-content: space-between;
