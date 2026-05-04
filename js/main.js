@@ -1,5 +1,5 @@
 
-// ── BASE DE DATOS DEL EQUIPO ──
+// BASE DE DATOS DEL EQUIPO 
 const equipo = [
   {
     id: 'ximena',
@@ -58,7 +58,7 @@ const state = {
 };
 
 
-// ── CURSOR PERSONALIZADO ──
+// CURSOR PERSONALIZADO
 const cur  = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
 
@@ -83,7 +83,7 @@ document.addEventListener('mouseover', e => {
 });
 
 
-// ── EFECTO SFX ──
+//  EFECTO SFX 
 const sfxWords = ['ZAAAP!', 'PING!', 'ACCESS!', 'SCAN!', 'CLICK!', 'SYNC!'];
 
 function triggerSFX(e, word) {
@@ -97,7 +97,7 @@ function triggerSFX(e, word) {
 }
 
 
-// ── SCAN OVERLAY ──
+// SCAN OVERLAY 
 function triggerScan() {
   const overlay = document.getElementById('scan-overlay');
   overlay.classList.add('active');
@@ -105,7 +105,7 @@ function triggerScan() {
 }
 
 
-// ── TYPEWRITER ──
+// TYPEWRITER 
 let twInterval = null;
 
 function startTypewriter(elementId, phrases) {
@@ -132,7 +132,7 @@ function startTypewriter(elementId, phrases) {
 }
 
 
-// ── CONTADORES ANIMADOS ──
+// CONTADORES ANIMADOS 
 function animateCounters() {
   document.querySelectorAll('[data-target]').forEach(el => {
     const target = +el.dataset.target;
@@ -149,7 +149,7 @@ function animateCounters() {
 }
 
 
-// ── COMPONENTE: TARJETA DE TRIPULANTE (nombre + foto full) ──
+// COMPONENTE: TARJETA DE TRIPULANTE (nombre + foto full) 
 function CrewCard(miembro, delay) {
   return `
     <div class="profile-card smash-in"
@@ -171,7 +171,7 @@ function CrewCard(miembro, delay) {
 }
 
 
-// ── COMPONENTE: PÁGINA HOME ──
+// COMPONENTE: PÁGINA HOME 
 function Home() {
   const cardsHTML = equipo
     .map((m, i) => CrewCard(m, i * 0.12))
@@ -272,7 +272,7 @@ function Home() {
 }
 
 
-// ── COMPONENTE: PÁGINA BITÁCORA ──
+// COMPONENTE: PÁGINA BITÁCORA 
 const bitacoraData = [
   {
     categoria: 'DECISIONES DE DISEÑO',
@@ -411,7 +411,7 @@ function Bitacora() {
 }
 
 
-// ── MANEJADORES DE EVENTOS ──
+// MANEJADORES DE EVENTOS
 
 // Card click → ir al perfil individual
 window.handleCardClick = function(e, id) {
@@ -455,7 +455,7 @@ window.scrollToIntegrantes = function() {
 };
 
 
-// ── ACTUALIZAR ESTADO ACTIVO DEL NAV ──
+// ACTUALIZAR ESTADO ACTIVO DEL NAV
 function updateNavActive(page, isProfilePage) {
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.classList.remove('active');
@@ -467,7 +467,7 @@ function updateNavActive(page, isProfilePage) {
 }
 
 
-// ── ROUTER PRINCIPAL ──
+// ROUTER PRINCIPAL
 window.navigate = function(page) {
   const root = document.getElementById('root');
 
@@ -497,7 +497,7 @@ window.navigate = function(page) {
 };
 
 
-// ── ARRANCAR APP ──
+// ARRANCAR APP 
 window.onload = () => {
   const params = new URLSearchParams(window.location.search);
   const page = params.get('page');
