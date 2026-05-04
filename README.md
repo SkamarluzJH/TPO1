@@ -1,6 +1,6 @@
 # Trabajo Práctico Grupal 1 - Proyecto Web en Equipo
 
-**[Link a Vercel](#)** ← *(reemplazar con URL de deploy)*
+**[Link a Vercel](#)** 
 
 ---
 
